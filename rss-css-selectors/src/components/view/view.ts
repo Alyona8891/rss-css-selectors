@@ -1,5 +1,5 @@
-import { ParamsElementCreator } from "../../types/types";
-import ElementCreator from "../unit/elementCreator";
+import { ParamsElementCreator } from '../../types/types';
+import ElementCreator from '../unit/elementCreator';
 
 interface CustomElement extends HTMLElement {
     getCreatedElement(): Element;
@@ -20,12 +20,6 @@ export default class View {
     }
 
     createView(params: ParamsElementCreator): CustomElement | null {
-        const elementParams: ParamsElementCreator = {
-            tag: params.tag,
-            tagClases: params.tagClases,
-            textContent: params.textContent,
-            callback: params.callback,
-        };
         const elementCreator = new ElementCreator(params) as unknown as CustomElement | null;
         return elementCreator;
     }

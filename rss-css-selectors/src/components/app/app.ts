@@ -15,6 +15,10 @@ export default class App {
         const headerView = new HeaderView() as unknown as CustomElement;
         const footerView = new FooterView() as unknown as CustomElement;
         const mainView = new MainView() as unknown as CustomElement;
-        document.body.append(headerView.getElementCreator(), mainView.getElementCreator(), footerView.getElementCreator());
+        document.body.append(
+            headerView.getElementCreator(),
+            mainView.getElementCreator(),
+            footerView.getElementCreator()
+        );
     }
 }

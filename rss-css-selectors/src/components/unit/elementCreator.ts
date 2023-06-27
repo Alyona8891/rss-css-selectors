@@ -1,6 +1,5 @@
 import { ParamsElementCreator } from '../../types/types';
 
-
 export default class ElementCreator {
     element: Element | null;
 
@@ -24,7 +23,7 @@ export default class ElementCreator {
         }
     }
 
-    addInnerElement(element: Element | ElementCreator | undefined) {
+    addInnerElement(element: Element | ElementCreator | undefined): void {
         if (element instanceof ElementCreator) {
             const createdElement = element.getCreatedElement();
             if (createdElement) {

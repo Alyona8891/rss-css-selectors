@@ -11,40 +11,36 @@ const attrributesNames = [
     [
         {
             name: 'href',
-            value: 'https://github.com/Alyona8891'
+            value: 'https://github.com/Alyona8891',
         },
         {
             name: 'target',
-            value: '_blank'
+            value: '_blank',
         },
-    
-    ], 
+    ],
     [
         {
             name: 'href',
-            value: 'https://rs.school/js/'
+            value: 'https://rs.school/js/',
         },
         {
             name: 'target',
-            value: '_blank'
+            value: '_blank',
         },
-    
-    ], 
+    ],
     [
         {
             name: 'src',
-            value: 'https://rs.school/images/rs_school_js.svg'
+            value: 'https://rs.school/images/rs_school_js.svg',
         },
         {
             name: 'alt',
-            value: 'rs logo'
+            value: 'rs logo',
         },
-    
-    ], 
-]
+    ],
+];
 
 export default class FooterView extends View {
-
     constructor() {
         const params: ParamsElementCreator = {
             tag: 'footer',
@@ -53,10 +49,10 @@ export default class FooterView extends View {
             callback: null,
         };
         super(params);
-        this.configView(); 
+        this.configView();
     }
 
-    configView() {
+    configView(): void {
         const paramsGh: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['gh-profile'],
@@ -64,7 +60,7 @@ export default class FooterView extends View {
             callback: null,
         };
         const ghPrLinkCreator = new ElementCreator(paramsGh);
-        if ( this.elementCreator) {
+        if (this.elementCreator) {
             this.elementCreator.addInnerElement(ghPrLinkCreator);
         }
         const ghPrLinkElen = new LinkView('Alyona Shupenyova', attrributesNames[0]);
@@ -76,7 +72,7 @@ export default class FooterView extends View {
             callback: null,
         };
         const yearCreator = new ElementCreator(paramsYear);
-        if ( this.elementCreator) {
+        if (this.elementCreator) {
             this.elementCreator.addInnerElement(yearCreator);
         }
         const paramsRsLint: ParamsElementCreator = {
@@ -86,16 +82,15 @@ export default class FooterView extends View {
             callback: null,
         };
         const rsLinkCreator = new ElementCreator(paramsRsLint);
-        if ( this.elementCreator) {
+        if (this.elementCreator) {
             this.elementCreator.addInnerElement(rsLinkCreator);
         }
         const rsLinkElenm = new LinkView('', attrributesNames[1]);
         rsLinkCreator.addInnerElement(rsLinkElenm.getElementCreator());
-        const logoImage = new ImageView(attrributesNames[2]) as unknown as CustomElement;;
+        const logoImage = new ImageView(attrributesNames[2]) as unknown as CustomElement;
         const j = logoImage.getElementCreator();
-        if(j) {
+        if (j) {
             rsLinkElenm.getElementCreator()?.append(logoImage.getElementCreator());
         }
-       
     }
 }

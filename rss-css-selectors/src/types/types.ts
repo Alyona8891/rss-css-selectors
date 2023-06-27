@@ -4,3 +4,9 @@ export interface ParamsElementCreator {
     textContent: string;
     callback?: ((params?: Event) => void) | null;
 }
+
+export interface ParamsBlockPlate {
+    tag: string;
+    class: string;
+    child: null | ParamsBlockPlate;
+}
