@@ -1,14 +1,3 @@
-*{
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
-*,*:before,*:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
 button, input {
     font-family: inherit;
 }
@@ -46,9 +35,4 @@ button, input {
     grid-row: 1 / 5;
     border: 5px solid red;
     height: 100%;
-}
-
-.block3 {
-    height: 100%;
-    border: 5px solid red;
 }
