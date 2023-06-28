@@ -2,6 +2,11 @@ import './block3.css';
 import { ParamsElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
+import HTMLViewerView from './htmlViewerView/htmlViewerView';
+interface CustomElement extends HTMLElement {
+    getElementCreator(): HTMLElement;
+    addInnerElement(element: Element | ElementCreator | undefined): Element;
+}
 
 export default class Block3View extends View {
     valueInput: string;
@@ -53,6 +58,10 @@ export default class Block3View extends View {
         const lineNumbers = new ElementCreator(paramLineNumbers);
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(lineNumbers);
+        }
+        const htmlViewer = new HTMLViewerView() as unknown as CustomElement;
+        if (this.elementCreator) {
+            this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }
 
         /* const inputParams: ParamsElementCreator = {

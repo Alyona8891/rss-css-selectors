@@ -5,6 +5,7 @@ import ElementCreator from '../../unit/elementCreator';
 import Block1View from './block1View/block1View';
 import Block2View from './block2View/block2View';
 import Block3View from './block3View/block3View';
+import Block4View from './block4View/block4View';
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
     addInnerElement(element: Element | ElementCreator | undefined): Element;
@@ -53,17 +54,8 @@ export default class MainView extends View {
         if (blockHelpContainer) {
             blockHelpContainer.addInnerElement(buttonHelp);
         }
-        const paramsBlock4: ParamsElementCreator = {
-            tag: 'div',
-            tagClases: ['block4'],
-            textContent: 'Block4',
-            callback: null,
-        };
-        const block4 = new ElementCreator(paramsBlock4);
-        if (this.elementCreator) {
-            this.elementCreator.addInnerElement(block4);
-        }
-
+        const block4 = new Block4View() as unknown as CustomElement;
+        this.elementCreator?.addInnerElement(block4?.getElementCreator());
         const block1 = new Block1View() as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block1?.getElementCreator());
         const block2 = new Block2View() as unknown as CustomElement;
