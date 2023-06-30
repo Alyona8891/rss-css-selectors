@@ -1,10 +1,11 @@
 import './htmlViewer.css';
-import { ParamsElementCreator } from '../../../../../types/types';
+import { ParamsBlockHtmlElem, ParamsElementCreator } from '../../../../../types/types';
 import ElementCreator from '../../../../unit/elementCreator';
 import View from '../../../view';
 
 export default class HTMLViewerView extends View {
-    constructor() {
+    myparamsBlockHtml: ParamsBlockHtmlElem[];
+    constructor(paramsBlockHtml: ParamsBlockHtmlElem[]) {
         const params: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['markup'],
@@ -12,6 +13,7 @@ export default class HTMLViewerView extends View {
             callback: null,
         };
         super(params);
+        this.myparamsBlockHtml = paramsBlockHtml;
         this.configView();
     }
 
@@ -20,7 +22,16 @@ export default class HTMLViewerView extends View {
             tag: 'div',
             tagClases: ['black'],
             textContent: '',
-            callback: null,
+            callback: {
+                mouseenter: (event: Event): void => {
+                    const targ = event.target;
+                    console.log(targ instanceof HTMLElement);
+                    if (targ instanceof HTMLElement) {
+                        const helper = document.querySelector('.helper');
+                        helper?.classList.add('visib');
+                    }
+                },
+            },
         };
         const blockTableSurf = new ElementCreator(paramsTableSurf);
 
@@ -28,14 +39,15 @@ export default class HTMLViewerView extends View {
             this.elementCreator.addInnerElement(blockTableSurf);
         }
         blockTableSurf.getCreatedElement()?.append('<div class="table">');
-        const el = document.createElement('div');
-        el.append('<plate />');
-        blockTableSurf.getCreatedElement()?.append(el);
-        const el2 = document.createElement('div');
-        el2.append('<plate />');
-        blockTableSurf.getCreatedElement()?.append(el2);
-
-        //blockTableSurf.getCreatedElement()?.append(document.createElement('div')?.append('<plate />'));
+        this.myparamsBlockHtml.forEach((el) =>
+            Object.entries(el).forEach(([key, value]) => {
+                const elem = document.createElement('div');
+                if (typeof value === 'string') {
+                    elem.append(value);
+                    blockTableSurf.getCreatedElement()?.append(elem);
+                }
+            })
+        );
         blockTableSurf.getCreatedElement()?.append('</div>');
 
         /*my.forEach((el: ParamsBlockPlate) => {

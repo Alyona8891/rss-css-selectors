@@ -1,8 +1,10 @@
 import './block3.css';
-import { ParamsElementCreator } from '../../../../types/types';
+import { ParamsElementCreator, Screenplay } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import HTMLViewerView from './htmlViewerView/htmlViewerView';
+import screenplays from '../../../../data/data';
+
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
     addInnerElement(element: Element | ElementCreator | undefined): Element;
@@ -19,10 +21,10 @@ export default class Block3View extends View {
         };
         super(params);
         this.valueInput = '';
-        this.configView();
+        this.configView(screenplays);
     }
 
-    configView(): void {
+    configView(screenplays: Screenplay): void {
         const paramsEditorHeaderContainer: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['editor-header_container'],
@@ -59,7 +61,7 @@ export default class Block3View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(lineNumbers);
         }
-        const htmlViewer = new HTMLViewerView() as unknown as CustomElement;
+        const htmlViewer = new HTMLViewerView(screenplays.level1.paramsBlockHtml) as unknown as CustomElement;
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }

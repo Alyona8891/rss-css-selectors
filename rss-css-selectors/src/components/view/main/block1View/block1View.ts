@@ -1,23 +1,12 @@
 import './Block1View.css';
-import { ParamsElementCreator } from '../../../../types/types';
+import { ParamsElementCreator, Screenplay } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import TableView from './tableView/tableView';
-
-const blocksTem = [
-    {
-        tag: 'plate',
-        class: 'strobe',
-        child: null,
-    },
-    {
-        tag: 'plate',
-        class: 'strobe',
-        child: null,
-    },
-];
+import screenplays from '../../../../data/data';
 
 export default class Block1View extends View {
+    arr: HTMLElement[] | Element[] | undefined;
     constructor() {
         const params: ParamsElementCreator = {
             tag: 'div',
@@ -26,10 +15,11 @@ export default class Block1View extends View {
             callback: null,
         };
         super(params);
-        this.configView();
+        this.arr = [];
+        this.configView(screenplays);
     }
 
-    configView(): void {
+    configView(screenplays: Screenplay): void {
         const paramsTableSurf: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['table-surf'],
@@ -50,9 +40,10 @@ export default class Block1View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(blockTableEdge);
         }
-        const blockTable = new TableView(blocksTem);
+        const blockTable = new TableView(screenplays?.level1?.paramsBlockPlates);
         if (blockTableSurf) {
             blockTableSurf.addInnerElement(blockTable.getElementCreator());
         }
+        this.arr = blockTable.arr;
     }
 }

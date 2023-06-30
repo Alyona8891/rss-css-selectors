@@ -27,11 +27,26 @@
     border: solid 3px white;
     border-width: 0 4px 4px 0;
     opacity: .2;
-    top: 3px;
+    top: -2px;
     transform: rotate(40deg);
+}
+.check-mark-finished {
+    border: solid 3px rgb(24, 207, 24);
+    border-width: 0 4px 4px 0;
+    opacity: 1;
 }
 
 .reset-btn {
     margin: 20px auto 0 auto;
     width: 70%;
+}
+.state-with-help {
+    font-weight: 200;
+    opacity: 0;
+    font-size: 0.7em;
+    color: rgb(208, 255, 0);
+    margin-left: 3px;
+}
+.state-with-help-vis {
+    opacity: 1;
 }

@@ -13,7 +13,7 @@ export default class InputElementCreator extends ElementCreator {
         this.inputElement.setAttribute('placeholder', 'Type in CSS selector');
         this.element.append(this.inputElement);
         if (params.callback) {
-            this.setCallback(params.callback);
+            this.setCallBack(params.callback);
         }
     }
 
@@ -21,9 +21,5 @@ export default class InputElementCreator extends ElementCreator {
         if (this.inputElement) {
             this.inputElement.value = value;
         }
-    }
-
-    setCallback(callback: (event: Event) => void | null): void {
-        this.element?.addEventListener('keyup', (event) => callback(event));
     }
 }

@@ -2,7 +2,7 @@ import { ParamsElementCreator } from '../../types/types';
 import ElementCreator from '../unit/elementCreator';
 
 interface CustomElement extends HTMLElement {
-    getCreatedElement(): Element;
+    getCreatedElement(): Element | HTMLElement;
     addInnerElement(element: HTMLElement | ElementCreator | undefined): Element;
 }
 

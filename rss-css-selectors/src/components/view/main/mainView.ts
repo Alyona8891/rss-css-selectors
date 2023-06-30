@@ -1,14 +1,16 @@
 import './main.css';
-import { ParamsElementCreator } from '../../../types/types';
+import { ParamsElementCreator, Screenplay } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import Block1View from './block1View/block1View';
 import Block2View from './block2View/block2View';
 import Block3View from './block3View/block3View';
 import Block4View from './block4View/block4View';
+import screenplays from '../../../data/data';
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
     addInnerElement(element: Element | ElementCreator | undefined): Element;
+    arr: HTMLElement[] | Element[] | undefined;
 }
 
 export default class MainView extends View {
@@ -20,14 +22,14 @@ export default class MainView extends View {
             callback: null,
         };
         super(params);
-        this.configView();
+        this.configView(screenplays);
     }
 
-    configView(): void {
+    configView(screenplays: Screenplay): void {
         const paramsTitle: ParamsElementCreator = {
             tag: 'h1',
             tagClases: ['title'],
-            textContent: 'Title',
+            textContent: screenplays.level1.title,
             callback: null,
         };
         const title = new ElementCreator(paramsTitle);

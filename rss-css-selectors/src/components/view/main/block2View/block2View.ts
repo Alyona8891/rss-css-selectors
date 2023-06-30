@@ -60,7 +60,9 @@ export default class Block2View extends View {
             tag: 'input',
             tagClases: [],
             textContent: '',
-            callback: (event) => this.keyupHandler(event),
+            callback: {
+                keyup: (event) => this.keyupHandler(event),
+            },
         };
         const creatorInput = new InputElementCreator(inputParams);
         if (this.elementCreator) {
@@ -81,7 +83,9 @@ export default class Block2View extends View {
             tag: 'button',
             tagClases: ['enter-button'],
             textContent: 'Enter',
-            callback: () => alert(this.valueInput),
+            callback: {
+                click: () => alert(this.valueInput),
+            },
         };
         const enterBtn = new ElementCreator(paramsEnterBtn);
         enterBtnContainer.addInnerElement(enterBtn);

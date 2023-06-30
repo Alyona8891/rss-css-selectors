@@ -1,4 +1,4 @@
-import { ParamsElementCreator } from '../../types/types';
+import { CallbackObject, ParamsElementCreator } from '../../types/types';
 
 export default class ElementCreator {
     element: Element | null;
@@ -17,7 +17,7 @@ export default class ElementCreator {
         }
     }
 
-    getCreatedElement(): Element | undefined {
+    getCreatedElement(): Element | HTMLElement | undefined {
         if (this.element) {
             return this.element;
         }
@@ -46,11 +46,11 @@ export default class ElementCreator {
         }
     }
 
-    setCallBack(callback: (params?: Event) => void | null): void {
-        if (typeof callback === 'function') {
-            if (this.element) {
-                this.element.addEventListener('click', (e: Event) => callback(e));
-            }
+    setCallBack(callbackObj: CallbackObject): void {
+        if (this.element) {
+            Object.entries(callbackObj).forEach(([key, value]) => {
+                this.element?.addEventListener(key, value);
+            });
         }
     }
 }
