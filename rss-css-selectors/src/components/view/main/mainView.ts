@@ -1,12 +1,12 @@
 import './main.css';
-import { ParamsElementCreator, Screenplay } from '../../../types/types';
+import { ParamsElementCreator, Screenplay, State } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import Block1View from './block1View/block1View';
 import Block2View from './block2View/block2View';
 import Block3View from './block3View/block3View';
 import Block4View from './block4View/block4View';
-import screenplays from '../../../data/data';
+import screenplays from '../../../data/screenplays';
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
     addInnerElement(element: Element | ElementCreator | undefined): Element;
@@ -14,7 +14,8 @@ interface CustomElement extends HTMLElement {
 }
 
 export default class MainView extends View {
-    constructor() {
+    currentState: State;
+    constructor(state: State) {
         const params: ParamsElementCreator = {
             tag: 'main',
             tagClases: ['main'],
@@ -22,6 +23,7 @@ export default class MainView extends View {
             callback: null,
         };
         super(params);
+        this.currentState = state;
         this.configView(screenplays);
     }
 
@@ -56,7 +58,7 @@ export default class MainView extends View {
         if (blockHelpContainer) {
             blockHelpContainer.addInnerElement(buttonHelp);
         }
-        const block4 = new Block4View() as unknown as CustomElement;
+        const block4 = new Block4View(this.currentState) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block4?.getElementCreator());
         const block1 = new Block1View() as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block1?.getElementCreator());

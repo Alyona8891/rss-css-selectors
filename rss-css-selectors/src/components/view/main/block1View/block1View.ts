@@ -3,7 +3,7 @@ import { ParamsElementCreator, Screenplay } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import TableView from './tableView/tableView';
-import screenplays from '../../../../data/data';
+import screenplays from '../../../../data/screenplays';
 
 export default class Block1View extends View {
     arr: HTMLElement[] | Element[] | undefined;

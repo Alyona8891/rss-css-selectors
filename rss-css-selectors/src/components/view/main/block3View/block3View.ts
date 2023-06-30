@@ -3,7 +3,7 @@ import { ParamsElementCreator, Screenplay } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import HTMLViewerView from './htmlViewerView/htmlViewerView';
-import screenplays from '../../../../data/data';
+import screenplays from '../../../../data/screenplays';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;

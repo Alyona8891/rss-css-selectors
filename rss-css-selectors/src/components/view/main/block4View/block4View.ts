@@ -1,54 +1,15 @@
 import './block4.css';
-import { ParamsElementCreator, State } from '../../../../types/types';
+import { NewArr, ParamsElementCreator, State } from '../../../../types/types';
 //import ElementCreator from '../../../unit/elementCreator';
 //import InputElementCreator from '../../../unit/inputElementCreator';
 import View from '../../view';
 import ElementCreator from '../../../unit/elementCreator';
-const state = {
-    1: {
-        isFinished: true,
-        isFinishedWithHelp: true,
-    },
-    2: {
-        isFinished: true,
-        isFinishedWithHelp: false,
-    },
-    3: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    4: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    5: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    6: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    7: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    8: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    9: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-    10: {
-        isFinished: false,
-        isFinishedWithHelp: false,
-    },
-};
 
 export default class Block4View extends View {
-    constructor() {
+    firstState: State;
+    currentState: State;
+    arrElements: HTMLElement[];
+    constructor(stateEnter: State) {
         const params: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['block4'],
@@ -56,7 +17,10 @@ export default class Block4View extends View {
             callback: null,
         };
         super(params);
-        this.configView(state);
+        this.firstState = stateEnter;
+        this.arrElements = [];
+        this.currentState = stateEnter;
+        this.configView(this.firstState);
     }
 
     configView(state: State): void {
@@ -65,9 +29,43 @@ export default class Block4View extends View {
                 tag: 'div',
                 tagClases: ['level-container'],
                 textContent: '',
-                callback: null,
+                callback: {
+                    click: (event: Event): void => {
+                        let curElement: ParentNode | HTMLElement | null = null;
+                        const htmlTarget = event.target as HTMLElement;
+                        if (htmlTarget.classList.contains('level-container')) {
+                            curElement = htmlTarget;
+                        } else {
+                            if (htmlTarget) {
+                                curElement = htmlTarget.parentNode;
+                            }
+                        }
+
+                        let index = 0;
+                        if (curElement && curElement instanceof HTMLElement) {
+                            index = this.arrElements.indexOf(curElement);
+                        }
+                        const newArr = Object.entries(this.currentState).map(([key, value], i) => {
+                            value.isCurrentTask = false;
+                            if (i === index) {
+                                value.isCurrentTask = true;
+                            }
+                            return [key, value];
+                        }) as unknown as NewArr;
+                        const newObj = Object.fromEntries(newArr) as unknown as State;
+                        this.currentState = newObj;
+                        this.rewrite(this.currentState);
+                    },
+                },
             };
             const levelContainer = new ElementCreator(paramsLevelContainer);
+            const h = levelContainer.getCreatedElement();
+            if (h instanceof HTMLElement) {
+                this.arrElements.push(h);
+            }
+            if (value.isCurrentTask) {
+                levelContainer.getCreatedElement()?.classList.add('current');
+            }
             if (this.elementCreator) {
                 this.elementCreator.addInnerElement(levelContainer);
             }
@@ -106,16 +104,34 @@ export default class Block4View extends View {
             tag: 'button',
             tagClases: ['reset-btn'],
             textContent: 'Reset Progress',
-            callback: null,
+            callback: {
+                click: (): void => {
+                    const newArr = Object.entries(this.currentState).map(([key, value], i) => {
+                        value.isCurrentTask = false;
+                        value.isFinished = false;
+                        value.isFinishedWithHelp = false;
+                        if (i === 0) {
+                            value.isCurrentTask = true;
+                        }
+                        return [key, value];
+                    }) as unknown as NewArr;
+                    const newObj = Object.fromEntries(newArr) as unknown as State;
+                    this.currentState = newObj;
+                    this.rewrite(this.currentState);
+                },
+            },
         };
         const btnReset = new ElementCreator(paramsBtnReset);
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(btnReset);
         }
     }
-    /*keyupHandler(event: Event | undefined): void {
-        if (event?.target instanceof HTMLInputElement) {
-            this.valueInput = event.target.value;
+    rewrite(state: State): void {
+        const htmlElement = this.elementCreator?.getCreatedElement();
+        while (htmlElement?.firstElementChild) {
+            htmlElement.firstElementChild.remove();
         }
-    }*/
+        this.arrElements = [];
+        this.configView(state);
+    }
 }
