@@ -14,6 +14,12 @@ export interface ParamsBlockPlate {
 export type CallbackObject = {
     [key: string]: (event: Event) => void;
 };
+type Obj = {
+    tag: string;
+    selector?: string;
+    inner: Obj[] | string;
+};
+
 export interface Screenplay {
     [key: string]: {
         title: string;
@@ -22,13 +28,13 @@ export interface Screenplay {
             class: string;
             child: null | ParamsBlockPlate;
         }[];
-        paramsBlockHtml: {
-            innerText: string;
-        }[];
+        paramsBlockHtml: Obj[];
     };
 }
 export interface ParamsBlockHtmlElem {
-    innerText: string;
+    tag: string;
+    selector?: string;
+    inner: Obj[] | string;
 }
 export interface State {
     1: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentTask: boolean };

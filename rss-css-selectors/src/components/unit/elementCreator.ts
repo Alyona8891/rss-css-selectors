@@ -2,6 +2,7 @@ import { CallbackObject, ParamsElementCreator } from '../../types/types';
 
 export default class ElementCreator {
     element: Element | null;
+    innerHTML: string | undefined;
 
     constructor(params: ParamsElementCreator) {
         this.element = null;

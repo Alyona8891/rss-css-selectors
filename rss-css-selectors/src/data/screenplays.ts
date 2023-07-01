@@ -15,10 +15,25 @@ const screenplays = {
         ],
         paramsBlockHtml: [
             {
-                innerText: '<plate />',
-            },
-            {
-                innerText: '<plate />',
+                tag: 'div',
+                selector: 'class="table"',
+                inner: [
+                    {
+                        tag: 'plate',
+                        selector: 'class="bi"',
+                        inner: '',
+                    },
+                    {
+                        tag: 'plate',
+                        selector: 'id="hi"',
+                        inner: [
+                            {
+                                tag: 'bento',
+                                inner: '',
+                            },
+                        ],
+                    },
+                ],
             },
         ],
     },
