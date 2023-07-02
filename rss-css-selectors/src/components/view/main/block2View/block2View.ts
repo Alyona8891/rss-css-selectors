@@ -3,9 +3,14 @@ import { ParamsElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import InputElementCreator from '../../../unit/inputElementCreator';
+import hljs from 'highlight.js/lib/core';
+import css from 'highlight.js/lib/languages/css';
+import 'highlight.js/styles/kimbie-dark.css';
+hljs.registerLanguage('css', css);
 
 export default class Block2View extends View {
     valueInput: string;
+    value: string | undefined;
     constructor() {
         const params: ParamsElementCreator = {
             tag: 'div',
@@ -55,13 +60,19 @@ export default class Block2View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(lineNumbers);
         }
-
         const inputParams: ParamsElementCreator = {
             tag: 'input',
             tagClases: [],
             textContent: '',
             callback: {
                 keyup: (event) => this.keyupHandler(event),
+                input: (e: Event) => {
+                    const el = document.querySelector('.pseudo-input') as HTMLElement;
+                    if (e?.target instanceof HTMLInputElement) {
+                        el.innerText = e.target?.value;
+                    }
+                    hljs.highlightElement(el);
+                },
             },
         };
         const creatorInput = new InputElementCreator(inputParams);

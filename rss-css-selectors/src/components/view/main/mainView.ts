@@ -52,7 +52,13 @@ export default class MainView extends View {
             tag: 'button',
             tagClases: ['buttonHelp'],
             textContent: 'button',
-            callback: null,
+            callback: {
+                click: (): void => {
+                    const div = document.querySelector('.pseudo-input') as HTMLElement;
+                    div?.classList.add('.animated');
+                    div.innerText = 'kfhidhbvifr';
+                },
+            },
         };
         const buttonHelp = new ElementCreator(paramsHelpButton);
         if (blockHelpContainer) {

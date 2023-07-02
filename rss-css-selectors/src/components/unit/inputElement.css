@@ -1,20 +1,45 @@
 .input-container {
     background: #efefef;
     color: #AAA;
-    padding: 5px;
+    padding: 5px 0px 5px 5px;
+    position: relative;
+}
+.input-container  .pseudo-input {
+    background-color: #2e2a23;
+    text-align: left;
+    font-family: "Exo 2", "Lato", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    overflow: auto;
+    max-width: 245px;
 }
 
 input {
     display: inline-block;
-    width: 100%;
-    border: none;
     outline: none;
-    background-color: rgba(62,203,255,.3);
+    border: 2px solid rgba(62,203,255,.3);
     animation: input .5s infinite;
+    color: transparent;
+    background: transparent;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 15px;
+    font-family: "Exo 2", "Lato", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+    width: 250px;
 }
 
 @keyframes input {
     50% { 
-        background: inherit ;
+        border: 2px solid white;
     }
+}
+
+.animated-text {
+    animation: animated-text 2s steps(30,end) 1s 1 normal both;
+}
+  
+@keyframes animated-text{
+    from{width: 0;}
+    to{width: 472px;}
 }
