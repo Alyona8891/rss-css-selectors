@@ -1,6 +1,10 @@
 import './inputElement.css';
 import { ParamsElementCreator } from '../../types/types';
 import ElementCreator from './elementCreator';
+import hljs from 'highlight.js/lib/core';
+import 'highlight.js/styles/kimbie-dark.css';
+import css from 'highlight.js/lib/languages/css';
+hljs.registerLanguage('css', css);
 
 export default class InputElementCreator extends ElementCreator {
     inputElement: HTMLInputElement | undefined;
@@ -20,6 +24,7 @@ export default class InputElementCreator extends ElementCreator {
         this.pseudoInputElement = document.createElement('div');
         this.pseudoInputElement.classList.add('pseudo-input');
         this.pseudoInputElement.classList.add('language-css');
+        hljs.highlightElement(this.pseudoInputElement);
         this.codePseudoInputElement.append(this.pseudoInputElement);
         this.element.append(this.prePseudoInputElement);
         if (params.callback) {

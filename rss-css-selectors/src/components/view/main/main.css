@@ -29,9 +29,6 @@ button {
     height: 20px;
     cursor: pointer;
 }
-.animated {
-    animation: animated-text 2s steps(30,end) 1s 1 normal both;
-}
   
 @keyframes animated-text{
     from{width: 0;}
