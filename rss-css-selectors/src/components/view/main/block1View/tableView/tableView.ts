@@ -32,32 +32,63 @@ export default class TableView extends View {
             this.elementCreator.addInnerElement(helper);
         }
         my.forEach((el: ParamsBlockPlate) => {
-            const obj = {
-                tag: el.tag,
-                tagClases: [el.class],
-                textContent: '',
-                callback: {
-                    mouseenter: (event: Event): void => {
-                        const targ = event.target;
-                        if (targ instanceof HTMLElement) {
-                            targ?.classList.add('hovered');
-                            const offsetLeft = targ.offsetLeft;
-                            const h = helper.getCreatedElement();
-                            if (h && h instanceof HTMLElement) {
-                                h.style?.setProperty('left', `${offsetLeft}px`);
+            let obj;
+            if (el.class) {
+                obj = {
+                    tag: el.tag,
+                    tagClases: [el.class],
+                    textContent: '',
+                    callback: {
+                        mouseenter: (event: Event): void => {
+                            const targ = event.target;
+                            if (targ instanceof HTMLElement) {
+                                targ?.classList.add('hovered');
+                                const offsetLeft = targ.offsetLeft;
+                                const h = helper.getCreatedElement();
+                                if (h && h instanceof HTMLElement) {
+                                    h.style?.setProperty('left', `${offsetLeft}px`);
+                                }
+                                helper.getCreatedElement()?.classList.add('visib');
                             }
-                            helper.getCreatedElement()?.classList.add('visib');
-                        }
+                        },
+                        mouseleave: (event: Event): void => {
+                            helper.getCreatedElement()?.classList.remove('visib');
+                            const targ = event.target;
+                            if (targ instanceof HTMLElement) {
+                                targ?.classList.remove('hovered');
+                            }
+                        },
                     },
-                    mouseleave: (event: Event): void => {
-                        helper.getCreatedElement()?.classList.remove('visib');
-                        const targ = event.target;
-                        if (targ instanceof HTMLElement) {
-                            targ?.classList.remove('hovered');
-                        }
+                };
+            } else {
+                obj = {
+                    tag: el.tag,
+                    tagClases: null,
+                    textContent: '',
+                    callback: {
+                        mouseenter: (event: Event): void => {
+                            const targ = event.target;
+                            if (targ instanceof HTMLElement) {
+                                targ?.classList.add('hovered');
+                                const offsetLeft = targ.offsetLeft;
+                                const h = helper.getCreatedElement();
+                                if (h && h instanceof HTMLElement) {
+                                    h.style?.setProperty('left', `${offsetLeft}px`);
+                                }
+                                helper.getCreatedElement()?.classList.add('visib');
+                            }
+                        },
+                        mouseleave: (event: Event): void => {
+                            helper.getCreatedElement()?.classList.remove('visib');
+                            const targ = event.target;
+                            if (targ instanceof HTMLElement) {
+                                targ?.classList.remove('hovered');
+                            }
+                        },
                     },
-                },
-            };
+                };
+            }
+
             const blockTableinner = new PlateElementCreator(obj);
             blockTableinner.getCreatedElement()?.setAttribute('data-tooltip', '<plate />');
             if (this.elementCreator) {

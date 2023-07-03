@@ -1,13 +1,14 @@
 export interface ParamsElementCreator {
     tag: string;
-    tagClases: string[];
+    tagClases: string[] | null;
     textContent: string;
     callback: CallbackObject | null;
 }
 
 export interface ParamsBlockPlate {
     tag: string;
-    class: string;
+    class: string | null;
+    id: string | null;
     child: null | ParamsBlockPlate;
 }
 
@@ -26,7 +27,8 @@ export interface Screenplay {
         title: string;
         paramsBlockPlates: {
             tag: string;
-            class: string;
+            class: string | null;
+            id: string | null;
             child: null | ParamsBlockPlate;
         }[];
         paramsBlockHtml: Obj[];

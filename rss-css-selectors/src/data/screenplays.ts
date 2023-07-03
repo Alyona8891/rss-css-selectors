@@ -6,11 +6,13 @@ const screenplays = {
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -40,16 +42,19 @@ const screenplays = {
             {
                 tag: 'bento',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
-                class: 'normal',
+                class: null,
+                id: null,
                 child: null,
             },
             {
                 tag: 'bento',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -79,16 +84,18 @@ const screenplays = {
     },
     level3: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -118,16 +125,18 @@ const screenplays = {
     },
     level4: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -157,16 +166,18 @@ const screenplays = {
     },
     level5: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -196,16 +207,18 @@ const screenplays = {
     },
     level6: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -235,16 +248,18 @@ const screenplays = {
     },
     level7: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -274,16 +289,18 @@ const screenplays = {
     },
     level8: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -313,16 +330,18 @@ const screenplays = {
     },
     level9: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],
@@ -352,16 +371,18 @@ const screenplays = {
     },
     level10: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
             {
                 tag: 'plate',
                 class: 'strobe',
+                id: null,
                 child: null,
             },
         ],

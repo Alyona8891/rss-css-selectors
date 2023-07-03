@@ -37,8 +37,10 @@ export default class ElementCreator {
         }
     }
 
-    setClasses(params: string[]): void {
-        params.forEach((className) => this.element?.classList.add(className));
+    setClasses(params: string[] | null): void {
+        if (params) {
+            params.forEach((className) => this.element?.classList.add(className));
+        }
     }
 
     setTextContent(param: string): void {
