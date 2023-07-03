@@ -5,7 +5,9 @@ import View from '../../view';
 import InputElementCreator from '../../../unit/inputElementCreator';
 import hljs from 'highlight.js/lib/core';
 import css from 'highlight.js/lib/languages/css';
-import 'highlight.js/styles/kimbie-dark.css';
+import 'highlight.js/styles/rainbow.css';
+import compareArrays from '../../../functions/compareArrays';
+import App from '../../../app/app';
 hljs.registerLanguage('css', css);
 
 export default class Block2View extends View {
@@ -95,7 +97,39 @@ export default class Block2View extends View {
             tagClases: ['enter-button'],
             textContent: 'Enter',
             callback: {
-                click: () => alert(this.valueInput),
+                click: () => {
+                    if (this.valueInput.length > 0) {
+                        const arrUser = Array.from(document.querySelectorAll(`${this.valueInput}`));
+                        const arrTrue = Array.from(document.querySelectorAll('.strobe'));
+                        if (compareArrays(arrUser, arrTrue)) {
+                            const localAlyonaState = localStorage.getItem('alyonaState');
+                            if (localAlyonaState) {
+                                const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                                papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
+                                papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
+                                papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
+                                localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
+                            }
+                            const bodyElement = document.querySelector('body');
+                            while (bodyElement?.firstElementChild) {
+                                bodyElement.firstElementChild.remove();
+                            }
+                            const app = new App();
+                        } else {
+                            if (this.elementCreator) {
+                                const element = this.elementCreator.getCreatedElement() as HTMLElement;
+                                element.style.animation = 'shake .1s 3';
+                            }
+                        }
+                    }
+                    if (this.elementCreator) {
+                        const element = this.elementCreator.getCreatedElement() as HTMLElement;
+                        element.style.animation = 'shake .1s 3';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 3000);
+                    }
+                },
             },
         };
         const enterBtn = new ElementCreator(paramsEnterBtn);

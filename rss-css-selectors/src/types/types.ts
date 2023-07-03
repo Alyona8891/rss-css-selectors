@@ -22,6 +22,7 @@ type Obj = {
 
 export interface Screenplay {
     [key: string]: {
+        help: string;
         title: string;
         paramsBlockPlates: {
             tag: string;

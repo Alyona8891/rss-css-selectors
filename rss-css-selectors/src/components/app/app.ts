@@ -31,6 +31,8 @@ export default class App {
         const localAlyonaState = localStorage.getItem('alyonaState');
         if (localAlyonaState) {
             this.state = JSON.parse(localAlyonaState);
+        } else {
+            localStorage.setItem('alyonaState', JSON.stringify(this.state));
         }
     }
 }

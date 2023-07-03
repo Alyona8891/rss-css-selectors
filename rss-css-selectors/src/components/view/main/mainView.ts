@@ -8,6 +8,7 @@ import Block3View from './block3View/block3View';
 import Block4View from './block4View/block4View';
 import screenplays from '../../../data/screenplays';
 import hljs from 'highlight.js/lib/core';
+import App from '../../app/app';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
@@ -55,16 +56,32 @@ export default class MainView extends View {
         const paramsHelpButton: ParamsElementCreator = {
             tag: 'button',
             tagClases: ['buttonHelp'],
-            textContent: 'button',
+            textContent: 'I can help:)',
             callback: {
                 click: (): void => {
                     const input = document.querySelector('input') as HTMLInputElement;
-                    input.value = '.plate#green';
+                    input.value = screenplays[`level${localStorage.alyonaCurentValue}`].help;
                     const div = document.querySelector('.pseudo-input') as HTMLElement;
-                    div.innerText = '.plate#green';
+                    div.innerText = screenplays[`level${localStorage.alyonaCurentValue}`].help;
                     hljs.highlightElement(div);
                     div.style.width = '0px';
-                    div.style.animation = `animated-text 10s steps(30,end) 1s 1 normal both`;
+                    div.style.animation = `animated-text 10s steps(${div.innerText.length},end) 1s 1 normal both`;
+                    const localAlyonaState = localStorage.getItem('alyonaState');
+                    if (localAlyonaState) {
+                        const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
+                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinishedWithHelp = true;
+                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
+                        papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
+                        localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
+                        div.addEventListener('animationend', () => {
+                            const bodyElement = document.querySelector('body');
+                            while (bodyElement?.firstElementChild) {
+                                bodyElement.firstElementChild.remove();
+                            }
+                            const app = new App();
+                        });
+                    }
                 },
             },
         };

@@ -127,7 +127,11 @@ export default class Block4View extends View {
                     const newObj = Object.fromEntries(newArr) as unknown as State;
                     this.currentState = newObj;
                     localStorage.setItem('alyonaState', JSON.stringify(this.currentState));
-                    this.rewrite(this.currentState);
+                    const bodyElement = document.querySelector('body');
+                    while (bodyElement?.firstElementChild) {
+                        bodyElement.firstElementChild.remove();
+                    }
+                    const app = new App();
                 },
             },
         };
