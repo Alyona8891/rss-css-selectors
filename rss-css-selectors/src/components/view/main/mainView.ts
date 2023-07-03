@@ -26,6 +26,8 @@ export default class MainView extends View {
         };
         super(params);
         this.currentState = state;
+        this.checkState();
+        this.detectCurrentLevel(this.currentState);
         this.configView(screenplays);
     }
 
@@ -33,7 +35,7 @@ export default class MainView extends View {
         const paramsTitle: ParamsElementCreator = {
             tag: 'h1',
             tagClases: ['title'],
-            textContent: screenplays.level1.title,
+            textContent: screenplays[`level${localStorage.alyonaCurentValue}`].title,
             callback: null,
         };
         const title = new ElementCreator(paramsTitle);
@@ -72,11 +74,32 @@ export default class MainView extends View {
         }
         const block4 = new Block4View(this.currentState) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block4?.getElementCreator());
-        const block1 = new Block1View() as unknown as CustomElement;
+        const block1 = new Block1View(
+            screenplays[`level${localStorage.alyonaCurentValue}`].paramsBlockPlates
+        ) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block1?.getElementCreator());
         const block2 = new Block2View() as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block2?.getElementCreator());
-        const block3 = new Block3View() as unknown as CustomElement;
+        const block3 = new Block3View(
+            screenplays[`level${localStorage.alyonaCurentValue}`].paramsBlockHtml
+        ) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block3?.getElementCreator());
+    }
+
+    detectCurrentLevel(state: State): void {
+        let indexCurEl = 0;
+        Object.entries(state).forEach(([key, value], i) => {
+            if (value.isCurrentTask === true) {
+                indexCurEl = i;
+            }
+        });
+        localStorage.alyonaCurentValue = indexCurEl + 1;
+    }
+
+    checkState(): void {
+        const localAlyonaState = localStorage.getItem('alyonaState');
+        if (localAlyonaState) {
+            this.currentState = JSON.parse(localAlyonaState);
+        }
     }
 }

@@ -4,6 +4,8 @@ import { NewArr, ParamsElementCreator, State } from '../../../../types/types';
 //import InputElementCreator from '../../../unit/inputElementCreator';
 import View from '../../view';
 import ElementCreator from '../../../unit/elementCreator';
+import detectCurrentLevel from '../../../functions/detectCurrentValue';
+import App from '../../../app/app';
 
 export default class Block4View extends View {
     firstState: State;
@@ -54,7 +56,14 @@ export default class Block4View extends View {
                         }) as unknown as NewArr;
                         const newObj = Object.fromEntries(newArr) as unknown as State;
                         this.currentState = newObj;
+                        localStorage.setItem('alyonaState', JSON.stringify(this.currentState));
                         this.rewrite(this.currentState);
+                        detectCurrentLevel(this.currentState);
+                        const bodyElement = document.querySelector('body');
+                        while (bodyElement?.firstElementChild) {
+                            bodyElement.firstElementChild.remove();
+                        }
+                        const app = new App();
                     },
                 },
             };
@@ -117,6 +126,7 @@ export default class Block4View extends View {
                     }) as unknown as NewArr;
                     const newObj = Object.fromEntries(newArr) as unknown as State;
                     this.currentState = newObj;
+                    localStorage.setItem('alyonaState', JSON.stringify(this.currentState));
                     this.rewrite(this.currentState);
                 },
             },

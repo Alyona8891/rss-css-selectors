@@ -1,4 +1,5 @@
 import state from '../../data/state';
+import { State } from '../../types/types';
 import FooterView from '../view/footer/footerView';
 import HeaderView from '../view/header/headerView';
 import MainView from '../view/main/mainView';
@@ -8,7 +9,10 @@ interface CustomElement extends HTMLElement {
 }
 
 export default class App {
+    state: State;
     constructor() {
+        this.state = state;
+        this.checkState();
         this.createView();
     }
 
@@ -21,5 +25,12 @@ export default class App {
             mainView.getElementCreator(),
             footerView.getElementCreator()
         );
+    }
+
+    checkState(): void {
+        const localAlyonaState = localStorage.getItem('alyonaState');
+        if (localAlyonaState) {
+            this.state = JSON.parse(localAlyonaState);
+        }
     }
 }

@@ -1,7 +1,7 @@
 const screenplays = {
     level1: {
         title: 'Select the plates',
-        help: '',
+        help: 'plate',
         paramsBlockPlates: [
             {
                 tag: 'plate',
@@ -34,16 +34,21 @@ const screenplays = {
         ],
     },
     level2: {
-        title: 'Select the plates',
-        help: '',
+        title: 'Select the bento',
+        help: 'bento',
         paramsBlockPlates: [
             {
-                tag: 'plate',
+                tag: 'bento',
                 class: 'strobe',
                 child: null,
             },
             {
                 tag: 'plate',
+                class: 'normal',
+                child: null,
+            },
+            {
+                tag: 'bento',
                 class: 'strobe',
                 child: null,
             },
@@ -54,19 +59,19 @@ const screenplays = {
                 selector: 'class="table"',
                 inner: [
                     {
-                        tag: 'plate',
-                        selector: 'class="bi"',
+                        tag: 'bento',
+                        selector: '',
                         inner: '',
                     },
                     {
                         tag: 'plate',
-                        selector: 'id="hi"',
-                        inner: [
-                            {
-                                tag: 'bento',
-                                inner: '',
-                            },
-                        ],
+                        selector: '',
+                        inner: '',
+                    },
+                    {
+                        tag: 'bento',
+                        selector: '',
+                        inner: '',
                     },
                 ],
             },

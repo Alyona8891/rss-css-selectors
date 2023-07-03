@@ -1,9 +1,8 @@
 import './block3.css';
-import { ParamsElementCreator, Screenplay } from '../../../../types/types';
+import { ParamsBlockHtmlElem, ParamsElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import HTMLViewerView from './htmlViewerView/htmlViewerView';
-import screenplays from '../../../../data/screenplays';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
@@ -12,7 +11,8 @@ interface CustomElement extends HTMLElement {
 
 export default class Block3View extends View {
     valueInput: string;
-    constructor() {
+    paramsBlockHtml: ParamsBlockHtmlElem[];
+    constructor(paramsBlockHtml: ParamsBlockHtmlElem[]) {
         const params: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['block3'],
@@ -21,10 +21,11 @@ export default class Block3View extends View {
         };
         super(params);
         this.valueInput = '';
-        this.configView(screenplays);
+        this.paramsBlockHtml = paramsBlockHtml;
+        this.configView(this.paramsBlockHtml);
     }
 
-    configView(screenplays: Screenplay): void {
+    configView(paramsBlockHtml: ParamsBlockHtmlElem[]): void {
         const paramsEditorHeaderContainer: ParamsElementCreator = {
             tag: 'div',
             tagClases: ['editor-header_container'],
@@ -61,7 +62,7 @@ export default class Block3View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(lineNumbers);
         }
-        const htmlViewer = new HTMLViewerView(screenplays.level1.paramsBlockHtml) as unknown as CustomElement;
+        const htmlViewer = new HTMLViewerView(paramsBlockHtml) as unknown as CustomElement;
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }

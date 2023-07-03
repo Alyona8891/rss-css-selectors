@@ -11,8 +11,6 @@ plate {
     display: block;
     border-bottom: solid 5px #DDD;
     background: white;
-    width: 100px;
-    height: 85px;
     border-radius: 100px;
 }
 
@@ -20,14 +18,37 @@ plate:before {
     content: "";
     display: block;
     position: absolute;
-    left: calc(50% - 32px);
-    top: calc(50% - 32px);
-    height: 65px;
-    width: 65px;
+    left: calc(50% - 28px);
+    top: calc(50% - 28px);
+    height: 55px;
+    width: 55px;
     border-radius: 60px;
     border-top: solid 6px #CCC;
     opacity: .4;
     background: rgba(255,255,255,1);
+}
+
+bento {
+    height: 100px;
+    background: brown;
+    position: relative;
+    border: solid 3px #711c12;
+    border-width: 20px 2px;
+}
+
+bento:before {
+    content:"";
+    position: absolute;
+    width: calc(100%);
+    top: 0;
+    left:0;
+    border: solid 10px rgba(0,0,0,.1);
+    border-width: 10px 0 0 0px;
+}
+
+plate, bento {
+    width: 80px;
+    height: 80px;
 }
 
 .strobe {
