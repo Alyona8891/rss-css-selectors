@@ -66,40 +66,5 @@ export default class Block3View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }
-
-        /* const inputParams: ParamsElementCreator = {
-            tag: 'input',
-            tagClases: [],
-            textContent: '',
-            callback: (event) => this.keyupHandler(event),
-        };
-        const creatorInput = new InputElementCreator(inputParams);
-        if (this.elementCreator) {
-            this.elementCreator.addInnerElement(creatorInput);
-        }
-
-        const paramsEnterBtnContainer: ParamsElementCreator = {
-            tag: 'div',
-            tagClases: ['enterBtn-container'],
-            textContent: '',
-            callback: null,
-        };
-        const enterBtnContainer = new ElementCreator(paramsEnterBtnContainer);
-        if (this.elementCreator) {
-            this.elementCreator.addInnerElement(enterBtnContainer);
-        }
-        const paramsEnterBtn: ParamsElementCreator = {
-            tag: 'button',
-            tagClases: ['enter-button'],
-            textContent: 'Enter',
-            callback: () => alert(this.valueInput),
-        };
-        const enterBtn = new ElementCreator(paramsEnterBtn);
-        enterBtnContainer.addInnerElement(enterBtn);*/
     }
-    /* keyupHandler(event: Event | undefined): void {
-        if (event?.target instanceof HTMLInputElement) {
-            this.valueInput = event.target.value;
-        }
-    } */
 }

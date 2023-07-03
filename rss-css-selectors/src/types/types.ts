@@ -9,7 +9,7 @@ export interface ParamsBlockPlate {
     tag: string;
     class: string | null;
     id: string | null;
-    child: null | ParamsBlockPlate;
+    child: null | ParamsBlockPlate[];
 }
 
 export type CallbackObject = {
@@ -29,7 +29,7 @@ export interface Screenplay {
             tag: string;
             class: string | null;
             id: string | null;
-            child: null | ParamsBlockPlate;
+            child: null | ParamsBlockPlate[];
         }[];
         paramsBlockHtml: Obj[];
     };

@@ -98,28 +98,39 @@ export default class Block2View extends View {
             textContent: 'Enter',
             callback: {
                 click: () => {
-                    if (this.valueInput.length > 0) {
-                        const arrUser = Array.from(document.querySelectorAll(`${this.valueInput}`));
-                        const arrTrue = Array.from(document.querySelectorAll('.strobe'));
-                        if (compareArrays(arrUser, arrTrue)) {
-                            const localAlyonaState = localStorage.getItem('alyonaState');
-                            if (localAlyonaState) {
-                                const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
-                                papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
-                                papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
-                                papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
-                                localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
+                    try {
+                        if (this.valueInput.length > 0) {
+                            const arrUser = Array.from(document.querySelectorAll(`${this.valueInput}`));
+                            const arrTrue = Array.from(document.querySelectorAll('.strobe'));
+                            if (compareArrays(arrUser, arrTrue)) {
+                                const localAlyonaState = localStorage.getItem('alyonaState');
+                                if (localAlyonaState) {
+                                    const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                                    papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
+                                    papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
+                                    papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask =
+                                        true;
+                                    localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
+                                }
+                                const bodyElement = document.querySelector('body');
+                                while (bodyElement?.firstElementChild) {
+                                    bodyElement.firstElementChild.remove();
+                                }
+                                const app = new App();
+                            } else {
+                                if (this.elementCreator) {
+                                    const element = this.elementCreator.getCreatedElement() as HTMLElement;
+                                    element.style.animation = 'shake .1s 3';
+                                }
                             }
-                            const bodyElement = document.querySelector('body');
-                            while (bodyElement?.firstElementChild) {
-                                bodyElement.firstElementChild.remove();
-                            }
-                            const app = new App();
-                        } else {
-                            if (this.elementCreator) {
-                                const element = this.elementCreator.getCreatedElement() as HTMLElement;
-                                element.style.animation = 'shake .1s 3';
-                            }
+                        }
+                    } catch {
+                        if (this.elementCreator) {
+                            const element = this.elementCreator.getCreatedElement() as HTMLElement;
+                            element.style.animation = 'shake .1s 3';
+                            setTimeout(() => {
+                                element.style.animation = '';
+                            }, 3000);
                         }
                     }
                     if (this.elementCreator) {

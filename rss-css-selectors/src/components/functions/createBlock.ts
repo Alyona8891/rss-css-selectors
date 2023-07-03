@@ -5,6 +5,7 @@ function createBlock(container: HTMLElement, data: ParamsBlockHtmlElem[]): void 
     const arr: HTMLElement[] = [];
     data.forEach((e) => {
         const div = document.createElement('div');
+        div.classList.add('html-line');
         div.style.paddingLeft = '20px';
 
         if (typeof e.inner !== 'string') {
@@ -39,9 +40,6 @@ function createBlock(container: HTMLElement, data: ParamsBlockHtmlElem[]): void 
             const j = div.outerHTML as unknown as HTMLElement;
             arr.push(j);
         }
-        div.addEventListener('click', () => {
-            console.log('Событие click на div');
-        });
     });
     container.innerHTML = arr.join('');
 }

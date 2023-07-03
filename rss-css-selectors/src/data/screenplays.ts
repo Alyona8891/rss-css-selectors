@@ -87,14 +87,21 @@ const screenplays = {
         help: 'plate',
         paramsBlockPlates: [
             {
-                tag: 'plate',
-                class: 'strobe',
+                tag: 'bento',
+                class: null,
                 id: null,
-                child: null,
+                child: [
+                    {
+                        tag: 'plate',
+                        class: null,
+                        id: null,
+                        child: null,
+                    },
+                ],
             },
             {
-                tag: 'plate',
-                class: 'strobe',
+                tag: 'bento',
+                class: null,
                 id: null,
                 child: null,
             },
@@ -105,16 +112,16 @@ const screenplays = {
                 selector: 'class="table"',
                 inner: [
                     {
-                        tag: 'plate',
-                        selector: 'class="bi"',
+                        tag: 'bento',
+                        selector: '',
                         inner: '',
                     },
                     {
-                        tag: 'plate',
-                        selector: 'id="hi"',
+                        tag: 'bento',
+                        selector: '',
                         inner: [
                             {
-                                tag: 'bento',
+                                tag: 'plate',
                                 inner: '',
                             },
                         ],
