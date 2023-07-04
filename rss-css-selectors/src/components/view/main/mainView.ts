@@ -77,6 +77,10 @@ export default class MainView extends View {
                         div.addEventListener('animationend', () => {
                             const strobeEls = document.querySelectorAll('.strobe');
                             strobeEls.forEach((el) => el.classList.add('winner'));
+                            const h = document.querySelector('.helper') as HTMLElement;
+                            h?.classList.add('visib');
+                            h.innerText = 'Level is passed!';
+                            h.style.left = '25%';
                             strobeEls.forEach((el) =>
                                 el.addEventListener('animationend', () => {
                                     const bodyElement = document.querySelector('body');

@@ -112,6 +112,10 @@ export default class Block2View extends View {
                                         true;
                                     localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
                                 }
+                                const h = document.querySelector('.helper') as HTMLElement;
+                                h?.classList.add('visib');
+                                h.innerText = 'Level is passed!';
+                                h.style.left = '25%';
                                 const strobeEls = document.querySelectorAll('.strobe');
                                 strobeEls.forEach((el) => el.classList.add('winner'));
                                 strobeEls.forEach((el) =>
