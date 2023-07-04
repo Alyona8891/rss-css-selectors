@@ -28,7 +28,7 @@
     height: 100%;
 }
 .enterBtn-container {
-    background: #efefef;
+    background: inherit;
     display: flex;
     justify-content: center;
     padding-top: 5px;
