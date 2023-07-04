@@ -50,6 +50,13 @@ plate, bento {
     width: 80px;
     height: 80px;
 }
+bento > plate {
+    position: absolute;
+    top: calc(50% - 25px);
+    margin:0;
+    width: 60px;
+    height: 60px;
+}
 
 .strobe {
     transform-origin: bottom;

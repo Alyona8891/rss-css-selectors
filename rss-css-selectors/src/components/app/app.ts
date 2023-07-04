@@ -1,5 +1,7 @@
+import arrPlates from '../../data/arrPlates';
 import state from '../../data/state';
 import { State } from '../../types/types';
+import addEventListHtmlLines from '../functions/addEventListHtmlLines';
 import FooterView from '../view/footer/footerView';
 import HeaderView from '../view/header/headerView';
 import MainView from '../view/main/mainView';
@@ -14,6 +16,7 @@ export default class App {
         this.state = state;
         this.checkState();
         this.createView();
+        addEventListHtmlLines();
     }
 
     createView(): void {
