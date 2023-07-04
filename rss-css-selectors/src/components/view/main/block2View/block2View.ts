@@ -112,11 +112,17 @@ export default class Block2View extends View {
                                         true;
                                     localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
                                 }
-                                const bodyElement = document.querySelector('body');
-                                while (bodyElement?.firstElementChild) {
-                                    bodyElement.firstElementChild.remove();
-                                }
-                                const app = new App();
+                                const strobeEls = document.querySelectorAll('.strobe');
+                                strobeEls.forEach((el) => el.classList.add('winner'));
+                                strobeEls.forEach((el) =>
+                                    el.addEventListener('animationend', () => {
+                                        const bodyElement = document.querySelector('body');
+                                        while (bodyElement?.firstElementChild) {
+                                            bodyElement.firstElementChild.remove();
+                                        }
+                                        const app = new App();
+                                    })
+                                );
                             } else {
                                 if (this.elementCreator) {
                                     const element = this.elementCreator.getCreatedElement() as HTMLElement;

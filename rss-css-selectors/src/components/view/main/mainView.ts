@@ -75,11 +75,17 @@ export default class MainView extends View {
                         papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
                         localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
                         div.addEventListener('animationend', () => {
-                            const bodyElement = document.querySelector('body');
-                            while (bodyElement?.firstElementChild) {
-                                bodyElement.firstElementChild.remove();
-                            }
-                            const app = new App();
+                            const strobeEls = document.querySelectorAll('.strobe');
+                            strobeEls.forEach((el) => el.classList.add('winner'));
+                            strobeEls.forEach((el) =>
+                                el.addEventListener('animationend', () => {
+                                    const bodyElement = document.querySelector('body');
+                                    while (bodyElement?.firstElementChild) {
+                                        bodyElement.firstElementChild.remove();
+                                    }
+                                    const app = new App();
+                                })
+                            );
                         });
                     }
                 },

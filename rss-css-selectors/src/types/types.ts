@@ -13,7 +13,7 @@ export interface ParamsBlockPlate {
 }
 
 export type CallbackObject = {
-    [key: string]: (event: Event) => void;
+    [key: string]: (event: Event | KeyboardEvent) => void;
 };
 type Obj = {
     tag: string;
