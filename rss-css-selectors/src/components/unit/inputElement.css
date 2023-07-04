@@ -34,3 +34,7 @@ input {
         border: 2px solid white;
     }
 }
+
+@keyframes animated_text{
+    from { width: 0;}
+}

@@ -65,8 +65,8 @@ export default class MainView extends View {
                     div.innerText = screenplays[`level${localStorage.alyonaCurentValue}`].help;
                     hljs.highlightElement(div);
                     div.style.overflow = 'hidden';
-                    div.style.width = '0px';
-                    div.style.animation = `animated-text 3s steps(11,end) 1s 1 normal both`;
+                    div.style.width = `${div.innerText.length}ch`;
+                    div.style.animation = `animated_text 0.3s steps(${div.innerText.length},end) 1s 1 normal both`;
                     const localAlyonaState = localStorage.getItem('alyonaState');
                     if (localAlyonaState) {
                         const papsedLocalAlyonaState = JSON.parse(localAlyonaState);

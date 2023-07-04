@@ -133,6 +133,14 @@ export default class Block2View extends View {
                                     element.style.animation = 'shake .1s 3';
                                 }
                             }
+                        } else {
+                            if (this.elementCreator) {
+                                const element = this.elementCreator.getCreatedElement() as HTMLElement;
+                                element.style.animation = 'shake .1s 3';
+                                setTimeout(() => {
+                                    element.style.animation = '';
+                                }, 3000);
+                            }
                         }
                     } catch {
                         if (this.elementCreator) {
@@ -142,13 +150,6 @@ export default class Block2View extends View {
                                 element.style.animation = '';
                             }, 3000);
                         }
-                    }
-                    if (this.elementCreator) {
-                        const element = this.elementCreator.getCreatedElement() as HTMLElement;
-                        element.style.animation = 'shake .1s 3';
-                        setTimeout(() => {
-                            element.style.animation = '';
-                        }, 3000);
                     }
                 },
             },

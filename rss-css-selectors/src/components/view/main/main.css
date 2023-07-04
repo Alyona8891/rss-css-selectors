@@ -28,8 +28,3 @@ button {
     padding: 5px;
     cursor: pointer;
 }
-  
-@keyframes animated-text{
-    from{width: 0;}
-    to{width: 100px;}
-}
