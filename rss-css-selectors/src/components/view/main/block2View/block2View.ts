@@ -1,5 +1,5 @@
 import './block2.css';
-import { ParamsElementCreator } from '../../../../types/types';
+import { NewArr, ParamsElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import InputElementCreator from '../../../unit/inputElementCreator';
@@ -8,6 +8,7 @@ import css from 'highlight.js/lib/languages/css';
 import 'highlight.js/styles/rainbow.css';
 import compareArrays from '../../../functions/compareArrays';
 import App from '../../../app/app';
+import state from '../../../../data/state';
 hljs.registerLanguage('css', css);
 
 export default class Block2View extends View {
@@ -105,11 +106,24 @@ export default class Block2View extends View {
                             if (compareArrays(arrUser, arrTrue)) {
                                 const localAlyonaState = localStorage.getItem('alyonaState');
                                 if (localAlyonaState) {
-                                    const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                                    let papsedLocalAlyonaState = JSON.parse(localAlyonaState);
                                     papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
                                     papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
-                                    papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask =
-                                        true;
+                                    if (papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`]) {
+                                        papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask =
+                                            true;
+                                    } else {
+                                        const newObj = Object.entries(papsedLocalAlyonaState) as unknown as NewArr;
+                                        const l = newObj.find(([key, value]) => {
+                                            value.isFinished === false;
+                                        });
+                                        if (l) {
+                                            papsedLocalAlyonaState[`${l[0]}`].isCurrentTask = true;
+                                        } else {
+                                            papsedLocalAlyonaState = state;
+                                        }
+                                    }
+
                                     localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
                                 }
                                 const h = document.querySelector('.helper') as HTMLElement;

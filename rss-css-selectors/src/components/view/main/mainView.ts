@@ -1,5 +1,5 @@
 import './main.css';
-import { ParamsElementCreator, Screenplay, State } from '../../../types/types';
+import { NewArr, ParamsElementCreator, Screenplay, State } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import Block1View from './block1View/block1View';
@@ -9,6 +9,7 @@ import Block4View from './block4View/block4View';
 import screenplays from '../../../data/screenplays';
 import hljs from 'highlight.js/lib/core';
 import App from '../../app/app';
+import state from '../../../data/state';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
@@ -69,11 +70,23 @@ export default class MainView extends View {
                     div.style.animation = `animated_text 0.3s steps(${div.innerText.length},end) 1s 1 normal both`;
                     const localAlyonaState = localStorage.getItem('alyonaState');
                     if (localAlyonaState) {
-                        const papsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                        let papsedLocalAlyonaState = JSON.parse(localAlyonaState);
                         papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
                         papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinishedWithHelp = true;
                         papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
-                        papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
+                        if (papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`]) {
+                            papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
+                        } else {
+                            const newObj = Object.entries(papsedLocalAlyonaState) as unknown as NewArr;
+                            const l = newObj.find(([key, value]) => {
+                                value.isFinished === false;
+                            });
+                            if (l) {
+                                papsedLocalAlyonaState[`${l[0]}`].isCurrentTask = true;
+                            } else {
+                                papsedLocalAlyonaState = state;
+                            }
+                        }
                         localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
                         div.addEventListener('animationend', () => {
                             const strobeEls = document.querySelectorAll('.strobe');

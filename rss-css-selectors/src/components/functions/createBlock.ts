@@ -34,9 +34,16 @@ function createBlock(container: HTMLElement, data: ParamsBlockHtmlElem[]): void 
             const j = div.outerHTML as unknown as HTMLElement;
             arr.push(j);
         } else {
-            div.innerHTML = hljs.highlight(`<${e.tag} />`, {
-                language: 'xml',
-            }).value;
+            if (e.selector) {
+                div.innerHTML = hljs.highlight(`<${e.tag} ${e.selector} />`, {
+                    language: 'xml',
+                }).value;
+            } else {
+                div.innerHTML = hljs.highlight(`<${e.tag} />`, {
+                    language: 'xml',
+                }).value;
+            }
+
             const j = div.outerHTML as unknown as HTMLElement;
             arr.push(j);
         }
