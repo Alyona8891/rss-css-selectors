@@ -1,0 +1,12 @@
+.link {
+    transition: 0.3s;
+}
+.link:hover {
+    color: rgb(145, 240, 36);
+    transition: 0.3s;
+}
+
+.link:active {
+    color: rgb(170, 97, 97);
+    transition: 0.3s;
+}

@@ -8,23 +8,67 @@ button {
     flex: 1 1 auto;
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
-    grid-template-rows: 0.1fr 0.2fr 1fr 1fr;
+    grid-template-rows: 0.1fr 0.1fr 0.1fr 0.7fr;
     grid-gap: 10px 15px;
     text-align: center;
     align-items: center;
+    padding-top: 15px;
+}
+
+@media screen and (max-width: 700px) {
+    .main {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    .main {
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 0.2fr 0.1fr 0.2fr 0.2fr;
+        grid-gap: 40px 30px;
+        text-align: center;
+        align-items: center;
+    }
 }
 
 .title {
     grid-column: 1 / 3;
     grid-row: 1 / 1;
 }
+@media screen and (max-width: 1020px) {
+    .title {
+        grid-column: 1 / 2;
+    }
+}
+@media screen and (max-width: 700px) {
+    .title {
+        font-size: 20px;
+    }
+}
 .container {
     grid-column: 1 / 3;
     grid-row: 2 / 2;
+}
+
+@media screen and (max-width: 1020px) {
+    .container {
+        grid-column: 1 / 2;
+        grid-row: 2 / 2;
+    }
 }
 
 .buttonHelp {
     display: inline-block;
     padding: 5px;
     cursor: pointer;
+    transition: 0.3s;
+}
+.buttonHelp:hover {
+    scale: 1.1;
+    transition: 0.3s;
+}
+
+.buttonHelp:active {
+    background-color: rgb(170, 97, 97);
+    transition: 0.3s;
 }

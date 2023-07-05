@@ -12,10 +12,33 @@
     color: #777;
 }
 
+@media screen and (max-width: 1020px) {
+    .block4{
+        grid-column: 2 / 2;
+        grid-row: 1 / 6;
+    }
+}
+@media screen and (max-width: 700px) {
+    .block4{
+        font-size: 16px;
+    }
+}
+
 .level-container {
     margin-bottom: 5px;
     justify-content: center;
     cursor: pointer;
+    transition: 0.2s;
+}
+.level-container:hover {
+    color: #AAA;
+    background: rgba(255,255,255,.07);
+    transition: 0.2s;
+}
+.level-container:active {
+    color: #AAA;
+    background-color: rgb(170, 97, 97);
+    transition: 0.2s;
 }
 
 .check-mark {
@@ -31,16 +54,38 @@
     top: -2px;
     transform: rotate(40deg);
 }
+@media screen and (max-width: 700px) {
+    .check-mark {
+        width: 6px;
+        height: 10px;
+        border-width: 0 2px 2px 0;
+        margin-right: 10px;
+    }
+}
 .check-mark-finished {
     border: solid 3px rgb(24, 207, 24);
     border-width: 0 4px 4px 0;
     opacity: 1;
+}
+@media screen and (max-width: 700px) {
+    .check-mark-finished {
+        border-width: 0 2px 2px 0;
+    }
 }
 
 .reset-btn {
     margin: 20px auto 0 auto;
     width: 70%;
     cursor: pointer;
+    transition: 0.2s;
+}
+
+.reset-btn:hover {
+    transition: 0.2s;
+    scale: 1.1;
+}
+.reset-btn:active {
+    background: rgb(173, 96, 96);
 }
 
 .state-with-help {
