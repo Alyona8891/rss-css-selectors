@@ -147,6 +147,9 @@ export default class Block2View extends View {
                                 if (this.elementCreator) {
                                     const element = this.elementCreator.getCreatedElement() as HTMLElement;
                                     element.style.animation = 'shake .1s 3';
+                                    setTimeout(() => {
+                                        element.style.animation = '';
+                                    }, 3000);
                                 }
                             }
                         } else {
