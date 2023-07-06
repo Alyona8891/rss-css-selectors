@@ -1,54 +1,54 @@
-const state = {
+const initialState = {
     1: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: true,
+        isCurrentLevel: true,
     },
     2: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     3: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     4: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     5: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     6: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     7: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     8: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     9: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
     10: {
         isFinished: false,
         isFinishedWithHelp: false,
-        isCurrentTask: false,
+        isCurrentLevel: false,
     },
 };
 
-export default state;
+export default initialState;

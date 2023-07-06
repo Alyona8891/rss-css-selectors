@@ -1,43 +1,43 @@
 import './table.css';
-import { ParamsElementCreator } from '../../../../../types/types';
+import { ParametersElementCreator } from '../../../../../types/types';
 import View from '../../../view';
 import { ParamsBlockPlate } from '../../../../../types/types';
 import ElementCreator from '../../../../unit/elementCreator';
-import PlateElementCreator from '../../../../unit/plateElementCreator';
-import createTableBlock from '../../../../functions/createTableBlock';
-import arrPlates from '../../../../../data/arrPlates';
+import createTableBlock from '../../../../functions/createTableBlock/createTableBlock';
+import savedArrElements from '../../../../../data/savedArrElements';
 
 export default class TableView extends View {
     arr: HTMLElement[] | Element[] | undefined;
-    constructor(blocksTem: ParamsBlockPlate[]) {
-        const params: ParamsElementCreator = {
+    paramsGameBlock: ParamsBlockPlate[];
+    constructor(paramsGameBlock: ParamsBlockPlate[]) {
+        const parameters: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['table'],
             textContent: '',
             callback: null,
         };
-        super(params);
-        const my = blocksTem;
+        super(parameters);
+        this.paramsGameBlock = paramsGameBlock;
         this.arr = [];
-        this.configView(my);
+        this.configView(this.paramsGameBlock);
     }
 
-    configView(my: ParamsBlockPlate[]): void {
-        const paramsHelper = {
+    configView(paramsGameBlock: ParamsBlockPlate[]): void {
+        const parametersHelperElement = {
             tag: 'div',
             tagClases: ['helper'],
             textContent: '',
             callback: null,
         };
-        const helper = new ElementCreator(paramsHelper);
+        const classHelperElement = new ElementCreator(parametersHelperElement);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(helper);
+            this.elementCreator.addInnerElement(classHelperElement);
         }
-        const u = this.elementCreator?.getCreatedElement() as HTMLElement;
-        createTableBlock(u, my, this.arr);
-        while (arrPlates.length > 0) {
-            arrPlates.pop();
+        const createdElement = this.elementCreator?.getCreatedElement() as HTMLElement;
+        createTableBlock(createdElement, paramsGameBlock, this.arr);
+        while (savedArrElements.length > 0) {
+            savedArrElements.pop();
         }
-        this.arr?.forEach((el: Element): number => arrPlates.push(el));
+        this.arr?.forEach((el: Element): number => savedArrElements.push(el));
     }
 }

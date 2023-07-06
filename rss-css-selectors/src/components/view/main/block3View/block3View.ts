@@ -1,5 +1,5 @@
 import './block3.css';
-import { ParamsBlockHtmlElem, ParamsElementCreator } from '../../../../types/types';
+import { ParametersHtmlLines, ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import HTMLViewerView from './htmlViewerView/htmlViewerView';
@@ -11,60 +11,60 @@ interface CustomElement extends HTMLElement {
 
 export default class Block3View extends View {
     valueInput: string;
-    paramsBlockHtml: ParamsBlockHtmlElem[];
-    constructor(paramsBlockHtml: ParamsBlockHtmlElem[]) {
-        const params: ParamsElementCreator = {
+    parametersHtmlLines: ParametersHtmlLines[];
+    constructor(parametersHtmlLines: ParametersHtmlLines[]) {
+        const parameters: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['block3'],
             textContent: '',
             callback: null,
         };
-        super(params);
+        super(parameters);
         this.valueInput = '';
-        this.paramsBlockHtml = paramsBlockHtml;
-        this.configView(this.paramsBlockHtml);
+        this.parametersHtmlLines = parametersHtmlLines;
+        this.configView(this.parametersHtmlLines);
     }
 
-    configView(paramsBlockHtml: ParamsBlockHtmlElem[]): void {
-        const paramsEditorHeaderContainer: ParamsElementCreator = {
+    configView(parametersHtmlLines: ParametersHtmlLines[]): void {
+        const parametersEditorHeaderContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['editor-header_container'],
             textContent: '',
             callback: null,
         };
-        const editorHeaderContainer = new ElementCreator(paramsEditorHeaderContainer);
+        const editorHeaderContainerElement = new ElementCreator(parametersEditorHeaderContainer);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(editorHeaderContainer);
+            this.elementCreator.addInnerElement(editorHeaderContainerElement);
         }
-        const paramsEditorHeaderFileName: ParamsElementCreator = {
+        const parametersFileNameContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['file-name'],
             textContent: 'HTML Viewer',
             callback: null,
         };
-        const editorHeaderFileName = new ElementCreator(paramsEditorHeaderFileName);
-        editorHeaderContainer.addInnerElement(editorHeaderFileName);
-        const paramsEditorHeaderFileWind: ParamsElementCreator = {
+        const editorHeaderFileName = new ElementCreator(parametersFileNameContainer);
+        editorHeaderContainerElement.addInnerElement(editorHeaderFileName);
+        const parametersFileElement: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['file-window'],
             textContent: 'table.html',
             callback: null,
         };
-        const editorHeaderFileWind = new ElementCreator(paramsEditorHeaderFileWind);
-        editorHeaderContainer.addInnerElement(editorHeaderFileWind);
-        const paramLineNumbers: ParamsElementCreator = {
+        const editorHeaderFileElement = new ElementCreator(parametersFileElement);
+        editorHeaderContainerElement.addInnerElement(editorHeaderFileElement);
+        const parametersLineNumbersElement: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['line-numbers-html'],
             textContent: '',
             callback: null,
         };
-        const lineNumbers = new ElementCreator(paramLineNumbers);
-        const lineNumbersElement = lineNumbers.getCreatedElement() as HTMLElement;
-        lineNumbersElement.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10';
+        const lineNumbersElement = new ElementCreator(parametersLineNumbersElement);
+        const createdLineNumbersElement = lineNumbersElement.getCreatedElement() as HTMLElement;
+        createdLineNumbersElement.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10';
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(lineNumbers);
+            this.elementCreator.addInnerElement(createdLineNumbersElement);
         }
-        const htmlViewer = new HTMLViewerView(paramsBlockHtml) as unknown as CustomElement;
+        const htmlViewer = new HTMLViewerView(parametersHtmlLines) as unknown as CustomElement;
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }

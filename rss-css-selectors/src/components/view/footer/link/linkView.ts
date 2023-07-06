@@ -1,17 +1,17 @@
 import './link.css';
 import View from '../../view';
-import { ParamsElementCreator } from '../../../../types/types';
+import { ParametersElementCreator } from '../../../../types/types';
 
 export default class LinkView extends View {
-    constructor(text: string, attrributesNames: Record<string, string>[]) {
-        const params: ParamsElementCreator = {
+    constructor(text: string, attributes: Record<string, string>[]) {
+        const parameters: ParametersElementCreator = {
             tag: 'a',
             tagClases: ['link'],
             textContent: text,
             callback: null,
         };
-        super(params);
-        this.setAttribute(attrributesNames);
+        super(parameters);
+        this.setAttribute(attributes);
     }
 
     setAttribute(attrributesNames: Record<string, string>[]): void {

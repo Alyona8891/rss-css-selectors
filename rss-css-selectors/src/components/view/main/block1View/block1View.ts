@@ -1,14 +1,14 @@
 import './Block1View.css';
-import { ParamsBlockPlate, ParamsElementCreator } from '../../../../types/types';
+import { ParamsBlockPlate, ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import TableView from './tableView/tableView';
 
 export default class Block1View extends View {
     arr: HTMLElement[] | Element[] | undefined;
-    paramsBlockPlates: ParamsBlockPlate[];
-    constructor(paramsBlockPlates: ParamsBlockPlate[]) {
-        const params: ParamsElementCreator = {
+    parametersBlockPlates: ParamsBlockPlate[];
+    constructor(parametersBlockPlates: ParamsBlockPlate[]) {
+        const params: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['block1'],
             textContent: '',
@@ -16,12 +16,12 @@ export default class Block1View extends View {
         };
         super(params);
         this.arr = [];
-        this.paramsBlockPlates = paramsBlockPlates;
-        this.configView(this.paramsBlockPlates);
+        this.parametersBlockPlates = parametersBlockPlates;
+        this.configView(this.parametersBlockPlates);
     }
 
     configView(paramsBlockPlates: ParamsBlockPlate[]): void {
-        const paramsTableSurf: ParamsElementCreator = {
+        const paramsTableSurf: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['table-surf'],
             textContent: '',
@@ -31,7 +31,7 @@ export default class Block1View extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(blockTableSurf);
         }
-        const paramsTableEdge: ParamsElementCreator = {
+        const paramsTableEdge: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['table-edge'],
             textContent: '',

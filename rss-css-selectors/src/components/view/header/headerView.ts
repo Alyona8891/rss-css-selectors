@@ -1,15 +1,15 @@
 import './header.css';
-import { ParamsElementCreator } from '../../../types/types';
+import { ParametersElementCreator } from '../../../types/types';
 import View from '../view';
 
 export default class HeaderView extends View {
     constructor() {
-        const params: ParamsElementCreator = {
+        const parameters: ParametersElementCreator = {
             tag: 'header',
             tagClases: ['header'],
             textContent: '',
             callback: null,
         };
-        super(params);
+        super(parameters);
     }
 }

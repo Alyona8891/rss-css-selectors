@@ -1,7 +1,5 @@
 import './block4.css';
-import { NewArr, ParamsElementCreator, State } from '../../../../types/types';
-//import ElementCreator from '../../../unit/elementCreator';
-//import InputElementCreator from '../../../unit/inputElementCreator';
+import { StateArray, ParametersElementCreator, State } from '../../../../types/types';
 import View from '../../view';
 import ElementCreator from '../../../unit/elementCreator';
 import detectCurrentLevel from '../../../functions/detectCurrentValue';
@@ -11,51 +9,50 @@ export default class Block4View extends View {
     firstState: State;
     currentState: State;
     arrElements: HTMLElement[];
-    constructor(stateEnter: State) {
-        const params: ParamsElementCreator = {
+    constructor(state: State) {
+        const parameters: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['block4'],
             textContent: 'Level',
             callback: null,
         };
-        super(params);
-        this.firstState = stateEnter;
+        super(parameters);
+        this.firstState = state;
         this.arrElements = [];
-        this.currentState = stateEnter;
+        this.currentState = state;
         this.configView(this.firstState);
     }
 
     configView(state: State): void {
         Object.entries(state).forEach(([key, value]) => {
-            const paramsLevelContainer: ParamsElementCreator = {
+            const parametersLevelContainer: ParametersElementCreator = {
                 tag: 'div',
                 tagClases: ['level-container'],
                 textContent: '',
                 callback: {
                     click: (event: Event): void => {
-                        let curElement: ParentNode | HTMLElement | null = null;
-                        const htmlTarget = event.target as HTMLElement;
-                        if (htmlTarget.classList.contains('level-container')) {
-                            curElement = htmlTarget;
+                        let currentElement: ParentNode | HTMLElement | null = null;
+                        const target = event.target as HTMLElement;
+                        if (target.classList.contains('level-container')) {
+                            currentElement = target;
                         } else {
-                            if (htmlTarget) {
-                                curElement = htmlTarget.parentNode;
+                            if (target) {
+                                currentElement = target.parentNode;
                             }
                         }
-
                         let index = 0;
-                        if (curElement && curElement instanceof HTMLElement) {
-                            index = this.arrElements.indexOf(curElement);
+                        if (currentElement && currentElement instanceof HTMLElement) {
+                            index = this.arrElements.indexOf(currentElement);
                         }
-                        const newArr = Object.entries(this.currentState).map(([key, value], i) => {
-                            value.isCurrentTask = false;
+                        const currentStateArr = Object.entries(this.currentState).map(([key, value], i) => {
+                            value.isCurrentLevel = false;
                             if (i === index) {
-                                value.isCurrentTask = true;
+                                value.isCurrentLevel = true;
                             }
                             return [key, value];
-                        }) as unknown as NewArr;
-                        const newObj = Object.fromEntries(newArr) as unknown as State;
-                        this.currentState = newObj;
+                        }) as unknown as StateArray;
+                        const newCurrentState = Object.fromEntries(currentStateArr) as unknown as State;
+                        this.currentState = newCurrentState;
                         localStorage.setItem('alyonaState', JSON.stringify(this.currentState));
                         this.rewrite(this.currentState);
                         detectCurrentLevel(this.currentState);
@@ -67,64 +64,64 @@ export default class Block4View extends View {
                     },
                 },
             };
-            const levelContainer = new ElementCreator(paramsLevelContainer);
-            const h = levelContainer.getCreatedElement();
-            if (h instanceof HTMLElement) {
-                this.arrElements.push(h);
+            const levelContainerElement = new ElementCreator(parametersLevelContainer);
+            const createdLevelContainerElement = levelContainerElement.getCreatedElement();
+            if (createdLevelContainerElement instanceof HTMLElement) {
+                this.arrElements.push(createdLevelContainerElement);
             }
-            if (value.isCurrentTask) {
-                levelContainer.getCreatedElement()?.classList.add('current');
+            if (value.isCurrentLevel) {
+                levelContainerElement.getCreatedElement()?.classList.add('current');
             }
             if (this.elementCreator) {
-                this.elementCreator.addInnerElement(levelContainer);
+                this.elementCreator.addInnerElement(levelContainerElement);
             }
-            const paramsCheckMark: ParamsElementCreator = {
+            const parametersCheckMarkElement: ParametersElementCreator = {
                 tag: 'span',
                 tagClases: ['check-mark'],
                 textContent: '',
                 callback: null,
             };
-            const checkMark = new ElementCreator(paramsCheckMark);
-            levelContainer.addInnerElement(checkMark);
+            const checkMarkElement = new ElementCreator(parametersCheckMarkElement);
+            levelContainerElement.addInnerElement(checkMarkElement);
             if (value.isFinished) {
-                checkMark.getCreatedElement()?.classList.add('check-mark-finished');
+                checkMarkElement.getCreatedElement()?.classList.add('check-mark-finished');
             }
-            const paramsLevelNum: ParamsElementCreator = {
+            const parametersLevelNumberElement: ParametersElementCreator = {
                 tag: 'span',
                 tagClases: ['level-num'],
                 textContent: `${key}`,
                 callback: null,
             };
-            const levelNum = new ElementCreator(paramsLevelNum);
-            levelContainer.addInnerElement(levelNum);
-            const paramsStateWithHelp: ParamsElementCreator = {
+            const levelNumberElement = new ElementCreator(parametersLevelNumberElement);
+            levelContainerElement.addInnerElement(levelNumberElement);
+            const parametersStateLevelElement: ParametersElementCreator = {
                 tag: 'span',
                 tagClases: ['state-with-help'],
                 textContent: '(with help)',
                 callback: null,
             };
-            const stateWithHelp = new ElementCreator(paramsStateWithHelp);
+            const stateLevelElement = new ElementCreator(parametersStateLevelElement);
             if (value.isFinished && value.isFinishedWithHelp) {
-                stateWithHelp.getCreatedElement()?.classList.add('state-with-help-vis');
+                stateLevelElement.getCreatedElement()?.classList.add('state-with-help-vis');
             }
-            levelContainer.addInnerElement(stateWithHelp);
+            levelContainerElement.addInnerElement(stateLevelElement);
         });
-        const paramsBtnReset: ParamsElementCreator = {
+        const parametersButtonResetElement: ParametersElementCreator = {
             tag: 'button',
             tagClases: ['reset-btn'],
             textContent: 'Reset Progress',
             callback: {
                 click: (): void => {
-                    const newArr = Object.entries(this.currentState).map(([key, value], i) => {
-                        value.isCurrentTask = false;
+                    const currentStateArr = Object.entries(this.currentState).map(([key, value], i) => {
+                        value.isCurrentLevel = false;
                         value.isFinished = false;
                         value.isFinishedWithHelp = false;
                         if (i === 0) {
-                            value.isCurrentTask = true;
+                            value.isCurrentLevel = true;
                         }
                         return [key, value];
-                    }) as unknown as NewArr;
-                    const newObj = Object.fromEntries(newArr) as unknown as State;
+                    }) as unknown as StateArray;
+                    const newObj = Object.fromEntries(currentStateArr) as unknown as State;
                     this.currentState = newObj;
                     localStorage.setItem('alyonaState', JSON.stringify(this.currentState));
                     const bodyElement = document.querySelector('body');
@@ -135,9 +132,9 @@ export default class Block4View extends View {
                 },
             },
         };
-        const btnReset = new ElementCreator(paramsBtnReset);
+        const buttonResetElement = new ElementCreator(parametersButtonResetElement);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(btnReset);
+            this.elementCreator.addInnerElement(buttonResetElement);
         }
     }
     rewrite(state: State): void {

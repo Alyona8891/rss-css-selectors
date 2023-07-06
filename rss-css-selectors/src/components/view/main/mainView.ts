@@ -1,5 +1,5 @@
 import './main.css';
-import { NewArr, ParamsElementCreator, Screenplay, State } from '../../../types/types';
+import { ParametersElementCreator, Screenplay, State } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import Block1View from './block1View/block1View';
@@ -7,140 +7,82 @@ import Block2View from './block2View/block2View';
 import Block3View from './block3View/block3View';
 import Block4View from './block4View/block4View';
 import screenplays from '../../../data/screenplays';
-import hljs from 'highlight.js/lib/core';
-import App from '../../app/app';
-import state from '../../../data/state';
+import handlerButtonHelp from './handlerButtonHelp';
+import detectCurrentLevel from '../../functions/detectCurrentValue';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;
     addInnerElement(element: Element | ElementCreator | undefined): Element;
-    arr: HTMLElement[] | Element[] | undefined;
 }
 
+const ButtonHelpTextContent = 'I can help:)';
 export default class MainView extends View {
-    currentState: State;
+    state: State;
     constructor(state: State) {
-        const params: ParamsElementCreator = {
+        const parameters: ParametersElementCreator = {
             tag: 'main',
             tagClases: ['main'],
             textContent: '',
             callback: null,
         };
-        super(params);
-        this.currentState = state;
+        super(parameters);
+        this.state = state;
         this.checkState();
-        this.detectCurrentLevel(this.currentState);
+        detectCurrentLevel(this.state);
         this.configView(screenplays);
     }
 
     configView(screenplays: Screenplay): void {
-        const paramsTitle: ParamsElementCreator = {
+        const parametersTitle: ParametersElementCreator = {
             tag: 'h1',
             tagClases: ['title'],
-            textContent: screenplays[`level${localStorage.alyonaCurentValue}`].title,
+            textContent: screenplays[`level${localStorage.alyonaCurrentLevel}`].title,
             callback: null,
         };
-        const title = new ElementCreator(paramsTitle);
+        const titleElement = new ElementCreator(parametersTitle);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(title);
+            this.elementCreator.addInnerElement(titleElement);
         }
-        const paramsHelpButtonContainer: ParamsElementCreator = {
+        const parametersButtonHelpContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['container'],
             textContent: '',
             callback: null,
         };
-        const blockHelpContainer = new ElementCreator(paramsHelpButtonContainer);
+        const buttonHelpContainer = new ElementCreator(parametersButtonHelpContainer);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(blockHelpContainer);
+            this.elementCreator.addInnerElement(buttonHelpContainer);
         }
-        const paramsHelpButton: ParamsElementCreator = {
+        const parametersButtonHelp: ParametersElementCreator = {
             tag: 'button',
             tagClases: ['buttonHelp'],
-            textContent: 'I can help:)',
+            textContent: ButtonHelpTextContent,
             callback: {
-                click: (): void => {
-                    const input = document.querySelector('input') as HTMLInputElement;
-                    input.value = screenplays[`level${localStorage.alyonaCurentValue}`].help;
-                    const div = document.querySelector('.pseudo-input') as HTMLElement;
-                    div.innerText = screenplays[`level${localStorage.alyonaCurentValue}`].help;
-                    hljs.highlightElement(div);
-                    div.style.overflow = 'hidden';
-                    div.style.width = `${div.innerText.length}ch`;
-                    div.style.animation = `animated_text 0.3s steps(${div.innerText.length},end) 1s 1 normal both`;
-                    const localAlyonaState = localStorage.getItem('alyonaState');
-                    if (localAlyonaState) {
-                        let papsedLocalAlyonaState = JSON.parse(localAlyonaState);
-                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
-                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinishedWithHelp = true;
-                        papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
-                        if (papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`]) {
-                            papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask = true;
-                        } else {
-                            const newObj = Object.entries(papsedLocalAlyonaState) as unknown as NewArr;
-                            const l = newObj.find(([key, value]) => {
-                                value.isFinished === false;
-                            });
-                            if (l) {
-                                papsedLocalAlyonaState[`${l[0]}`].isCurrentTask = true;
-                            } else {
-                                papsedLocalAlyonaState = state;
-                            }
-                        }
-                        localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
-                        div.addEventListener('animationend', () => {
-                            const strobeEls = document.querySelectorAll('.strobe');
-                            strobeEls.forEach((el) => el.classList.add('winner'));
-                            const h = document.querySelector('.helper') as HTMLElement;
-                            h?.classList.add('visib');
-                            h.innerText = 'Level is passed!';
-                            h.style.left = '25%';
-                            strobeEls.forEach((el) =>
-                                el.addEventListener('animationend', () => {
-                                    const bodyElement = document.querySelector('body');
-                                    while (bodyElement?.firstElementChild) {
-                                        bodyElement.firstElementChild.remove();
-                                    }
-                                    const app = new App();
-                                })
-                            );
-                        });
-                    }
-                },
+                click: handlerButtonHelp,
             },
         };
-        const buttonHelp = new ElementCreator(paramsHelpButton);
-        if (blockHelpContainer) {
-            blockHelpContainer.addInnerElement(buttonHelp);
+        const buttonHelpElement = new ElementCreator(parametersButtonHelp);
+        if (buttonHelpContainer) {
+            buttonHelpContainer.addInnerElement(buttonHelpElement);
         }
-        const block4 = new Block4View(this.currentState) as unknown as CustomElement;
+        const block4 = new Block4View(this.state) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block4?.getElementCreator());
         const block1 = new Block1View(
-            screenplays[`level${localStorage.alyonaCurentValue}`].paramsBlockPlates
+            screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersElements
         ) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block1?.getElementCreator());
         const block2 = new Block2View() as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block2?.getElementCreator());
         const block3 = new Block3View(
-            screenplays[`level${localStorage.alyonaCurentValue}`].paramsBlockHtml
+            screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersHtmlLines
         ) as unknown as CustomElement;
         this.elementCreator?.addInnerElement(block3?.getElementCreator());
-    }
-
-    detectCurrentLevel(state: State): void {
-        let indexCurEl = 0;
-        Object.entries(state).forEach(([key, value], i) => {
-            if (value.isCurrentTask === true) {
-                indexCurEl = i;
-            }
-        });
-        localStorage.alyonaCurentValue = indexCurEl + 1;
     }
 
     checkState(): void {
         const localAlyonaState = localStorage.getItem('alyonaState');
         if (localAlyonaState) {
-            this.currentState = JSON.parse(localAlyonaState);
+            this.state = JSON.parse(localAlyonaState);
         }
     }
 }

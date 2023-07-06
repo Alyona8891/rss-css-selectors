@@ -1,5 +1,6 @@
 import './style.css';
 import App from './components/app/app';
+import savedArrElements from './data/savedArrElements';
 
 const app = new App();
 
@@ -12,3 +13,4 @@ window.addEventListener('keyup', (event: Event | KeyboardEvent) => {
         }
     }
 });
+console.log(savedArrElements);

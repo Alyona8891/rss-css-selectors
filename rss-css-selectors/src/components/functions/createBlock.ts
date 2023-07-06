@@ -1,53 +1,51 @@
 import hljs from 'highlight.js/lib/core';
-import { ParamsBlockHtmlElem } from '../../types/types';
+import { ParametersHtmlLines } from '../../types/types';
 
-function createBlock(container: HTMLElement, data: ParamsBlockHtmlElem[]): void {
-    const arr: HTMLElement[] = [];
-    data.forEach((e) => {
-        const div = document.createElement('div');
-        div.classList.add('html-line');
-        div.style.paddingLeft = '20px';
-
-        if (typeof e.inner !== 'string') {
-            createBlock(div, e.inner);
-            if (e.selector) {
-                div.insertAdjacentHTML(
+function createBlock(container: HTMLElement, parametersHtmlLines: ParametersHtmlLines[]): void {
+    const arrElements: HTMLElement[] = [];
+    parametersHtmlLines.forEach((el) => {
+        const divElement = document.createElement('div');
+        divElement.classList.add('html-line');
+        divElement.style.paddingLeft = '20px';
+        if (typeof el.innerElement !== 'string') {
+            createBlock(divElement, el.innerElement);
+            if (el.selector) {
+                divElement.insertAdjacentHTML(
                     'afterbegin',
-                    hljs.highlight(`<${e.tag} ${e.selector}>`, {
+                    hljs.highlight(`<${el.tag} ${el.selector}>`, {
                         language: 'xml',
                     }).value
                 );
             } else {
-                div.insertAdjacentHTML(
+                divElement.insertAdjacentHTML(
                     'afterbegin',
-                    hljs.highlight(`<${e.tag}>`, {
+                    hljs.highlight(`<${el.tag}>`, {
                         language: 'xml',
                     }).value
                 );
             }
-            div.insertAdjacentHTML(
+            divElement.insertAdjacentHTML(
                 'beforeend',
-                hljs.highlight(`</${e.tag}>`, {
+                hljs.highlight(`</${el.tag}>`, {
                     language: 'xml',
                 }).value
             );
-            const j = div.outerHTML as unknown as HTMLElement;
-            arr.push(j);
+            const divElementOuterHtml = divElement.outerHTML as unknown as HTMLElement;
+            arrElements.push(divElementOuterHtml);
         } else {
-            if (e.selector) {
-                div.innerHTML = hljs.highlight(`<${e.tag} ${e.selector} />`, {
+            if (el.selector) {
+                divElement.innerHTML = hljs.highlight(`<${el.tag} ${el.selector} />`, {
                     language: 'xml',
                 }).value;
             } else {
-                div.innerHTML = hljs.highlight(`<${e.tag} />`, {
+                divElement.innerHTML = hljs.highlight(`<${el.tag} />`, {
                     language: 'xml',
                 }).value;
             }
-
-            const j = div.outerHTML as unknown as HTMLElement;
-            arr.push(j);
+            const divElementOuterHtml = divElement.outerHTML as unknown as HTMLElement;
+            arrElements.push(divElementOuterHtml);
         }
     });
-    container.innerHTML = arr.join('');
+    container.innerHTML = arrElements.join('');
 }
 export default createBlock;

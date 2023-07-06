@@ -1,4 +1,4 @@
-import { ParamsElementCreator } from '../../types/types';
+import { ParametersElementCreator } from '../../types/types';
 import ElementCreator from '../unit/elementCreator';
 
 interface CustomElement extends HTMLElement {
@@ -9,8 +9,8 @@ interface CustomElement extends HTMLElement {
 export default class View {
     elementCreator: CustomElement | null;
 
-    constructor(params: ParamsElementCreator) {
-        this.elementCreator = this.createView(params);
+    constructor(parameters: ParametersElementCreator) {
+        this.elementCreator = this.createView(parameters);
     }
 
     getElementCreator(): Element | undefined {
@@ -19,8 +19,8 @@ export default class View {
         }
     }
 
-    createView(params: ParamsElementCreator): CustomElement | null {
-        const elementCreator = new ElementCreator(params) as unknown as CustomElement | null;
+    createView(parameters: ParametersElementCreator): CustomElement | null {
+        const elementCreator = new ElementCreator(parameters) as unknown as CustomElement | null;
         return elementCreator;
     }
 }

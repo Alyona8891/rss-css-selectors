@@ -1,20 +1,20 @@
-import { CallbackObject, ParamsElementCreator } from '../../types/types';
+import { CallbackObject, FunctionObject, ParametersElementCreator } from '../../types/types';
 
 export default class ElementCreator {
     element: Element | null;
     innerHTML: string | undefined;
 
-    constructor(params: ParamsElementCreator) {
+    constructor(parameters: ParametersElementCreator) {
         this.element = null;
-        this.createElement(params);
+        this.createElement(parameters);
     }
 
-    createElement(params: ParamsElementCreator): void {
-        this.element = document.createElement(params.tag);
-        this.setClasses(params.tagClases);
-        this.setTextContent(params.textContent);
-        if (params.callback) {
-            this.setCallBack(params.callback);
+    createElement(parameters: ParametersElementCreator): void {
+        this.element = document.createElement(parameters.tag);
+        this.setClasses(parameters.tagClases);
+        this.setTextContent(parameters.textContent);
+        if (parameters.callback) {
+            this.setCallBack(parameters.callback);
         }
     }
 
@@ -37,21 +37,21 @@ export default class ElementCreator {
         }
     }
 
-    setClasses(params: string[] | null): void {
-        if (params) {
-            params.forEach((className) => this.element?.classList.add(className));
+    setClasses(parameters: string[] | null): void {
+        if (parameters) {
+            parameters.forEach((className) => this.element?.classList.add(className));
         }
     }
 
-    setTextContent(param: string): void {
+    setTextContent(parameter: string): void {
         if (this.element) {
-            this.element.textContent = param;
+            this.element.textContent = parameter;
         }
     }
 
-    setCallBack(callbackObj: CallbackObject): void {
+    setCallBack(callbackObject: CallbackObject | FunctionObject): void {
         if (this.element) {
-            Object.entries(callbackObj).forEach(([key, value]) => {
+            Object.entries(callbackObject).forEach(([key, value]) => {
                 this.element?.addEventListener(key, value);
             });
         }

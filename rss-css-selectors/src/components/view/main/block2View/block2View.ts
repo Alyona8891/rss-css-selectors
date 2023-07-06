@@ -1,5 +1,5 @@
 import './block2.css';
-import { NewArr, ParamsElementCreator } from '../../../../types/types';
+import { StateArray, ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import InputElementCreator from '../../../unit/inputElementCreator';
@@ -8,64 +8,65 @@ import css from 'highlight.js/lib/languages/css';
 import 'highlight.js/styles/rainbow.css';
 import compareArrays from '../../../functions/compareArrays';
 import App from '../../../app/app';
-import state from '../../../../data/state';
+import initialState from '../../../../data/state';
+import shakeElement from './shakeElement';
 hljs.registerLanguage('css', css);
 
 export default class Block2View extends View {
     valueInput: string;
     value: string | undefined;
     constructor() {
-        const params: ParamsElementCreator = {
+        const parameters: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['block2'],
             textContent: '',
             callback: null,
         };
-        super(params);
+        super(parameters);
         this.valueInput = '';
         this.configView();
     }
 
     configView(): void {
-        const paramsEditorHeaderContainer: ParamsElementCreator = {
+        const parametersEditorHeaderContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['editor-header_container'],
             textContent: '',
             callback: null,
         };
-        const editorHeaderContainer = new ElementCreator(paramsEditorHeaderContainer);
+        const editorHeaderContainerElement = new ElementCreator(parametersEditorHeaderContainer);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(editorHeaderContainer);
+            this.elementCreator.addInnerElement(editorHeaderContainerElement);
         }
-        const paramsEditorHeaderFileName: ParamsElementCreator = {
+        const parametersFileNameContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['file-name'],
             textContent: 'CSS Editor',
             callback: null,
         };
-        const editorHeaderFileName = new ElementCreator(paramsEditorHeaderFileName);
-        editorHeaderContainer.addInnerElement(editorHeaderFileName);
-        const paramsEditorHeaderFileWind: ParamsElementCreator = {
+        const editorHeaderFileName = new ElementCreator(parametersFileNameContainer);
+        editorHeaderContainerElement.addInnerElement(editorHeaderFileName);
+        const parametersFileElement: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['file-window'],
             textContent: 'style.css',
             callback: null,
         };
-        const editorHeaderFileWind = new ElementCreator(paramsEditorHeaderFileWind);
-        editorHeaderContainer.addInnerElement(editorHeaderFileWind);
-        const paramLineNumbers: ParamsElementCreator = {
+        const editorHeaderFileElement = new ElementCreator(parametersFileElement);
+        editorHeaderContainerElement.addInnerElement(editorHeaderFileElement);
+        const parametersLineNumbersElement: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['line-numbers'],
             textContent: '',
             callback: null,
         };
-        const lineNumbers = new ElementCreator(paramLineNumbers);
-        const lineNumbersElement = lineNumbers.getCreatedElement() as HTMLElement;
-        lineNumbersElement.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10';
+        const lineNumbersElement = new ElementCreator(parametersLineNumbersElement);
+        const createdLineNumbersElement = lineNumbersElement.getCreatedElement() as HTMLElement;
+        createdLineNumbersElement.innerHTML = '1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10';
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(lineNumbers);
+            this.elementCreator.addInnerElement(createdLineNumbersElement);
         }
-        const inputParams: ParamsElementCreator = {
+        const paramsInputElement: ParametersElementCreator = {
             tag: 'input',
             tagClases: [],
             textContent: '',
@@ -80,22 +81,22 @@ export default class Block2View extends View {
                 },
             },
         };
-        const creatorInput = new InputElementCreator(inputParams);
+        const inputElement = new InputElementCreator(paramsInputElement);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(creatorInput);
+            this.elementCreator.addInnerElement(inputElement);
         }
 
-        const paramsEnterBtnContainer: ParamsElementCreator = {
+        const parametersEnterBtnContainer: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['enterBtn-container'],
             textContent: '',
             callback: null,
         };
-        const enterBtnContainer = new ElementCreator(paramsEnterBtnContainer);
+        const enterButtonContainer = new ElementCreator(parametersEnterBtnContainer);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(enterBtnContainer);
+            this.elementCreator.addInnerElement(enterButtonContainer);
         }
-        const paramsEnterBtn: ParamsElementCreator = {
+        const parametersEnterBtn: ParametersElementCreator = {
             tag: 'button',
             tagClases: ['enter-button'],
             textContent: 'Enter',
@@ -108,33 +109,36 @@ export default class Block2View extends View {
                             if (compareArrays(arrUser, arrTrue)) {
                                 const localAlyonaState = localStorage.getItem('alyonaState');
                                 if (localAlyonaState) {
-                                    let papsedLocalAlyonaState = JSON.parse(localAlyonaState);
-                                    papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isFinished = true;
-                                    papsedLocalAlyonaState[`${localStorage.alyonaCurentValue}`].isCurrentTask = false;
-                                    if (papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`]) {
-                                        papsedLocalAlyonaState[`${+localStorage.alyonaCurentValue + 1}`].isCurrentTask =
-                                            true;
+                                    let parsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                                    parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isFinished = true;
+                                    parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isCurrentLevel = false;
+                                    if (parsedLocalAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`]) {
+                                        parsedLocalAlyonaState[
+                                            `${+localStorage.alyonaCurrentLevel + 1}`
+                                        ].isCurrentLevel = true;
                                     } else {
-                                        const newObj = Object.entries(papsedLocalAlyonaState) as unknown as NewArr;
-                                        const l = newObj.find(([key, value]) => {
+                                        const parsedLocalAlyonaStateArr = Object.entries(
+                                            parsedLocalAlyonaState
+                                        ) as unknown as StateArray;
+                                        const element = parsedLocalAlyonaStateArr.find(([key, value]) => {
                                             value.isFinished === false;
                                         });
-                                        if (l) {
-                                            papsedLocalAlyonaState[`${l[0]}`].isCurrentTask = true;
+                                        if (element) {
+                                            parsedLocalAlyonaState[`${element[0]}`].isCurrentLevel = true;
                                         } else {
-                                            papsedLocalAlyonaState = state;
+                                            parsedLocalAlyonaState = initialState;
                                         }
                                     }
 
-                                    localStorage.setItem('alyonaState', JSON.stringify(papsedLocalAlyonaState));
+                                    localStorage.setItem('alyonaState', JSON.stringify(parsedLocalAlyonaState));
                                 }
-                                const h = document.querySelector('.helper') as HTMLElement;
-                                h?.classList.add('visib');
-                                h.innerText = 'Level is passed!';
-                                h.style.left = '25%';
-                                const strobeEls = document.querySelectorAll('.strobe');
-                                strobeEls.forEach((el) => el.classList.add('winner'));
-                                strobeEls.forEach((el) =>
+                                const elementClassHelper = document.querySelector('.helper') as HTMLElement;
+                                elementClassHelper?.classList.add('visib');
+                                elementClassHelper.innerText = 'Level is passed!';
+                                elementClassHelper.style.left = '25%';
+                                const strobeElements = document.querySelectorAll('.strobe');
+                                strobeElements.forEach((el) => el.classList.add('winner'));
+                                strobeElements.forEach((el) =>
                                     el.addEventListener('animationend', () => {
                                         const bodyElement = document.querySelector('body');
                                         while (bodyElement?.firstElementChild) {
@@ -145,36 +149,24 @@ export default class Block2View extends View {
                                 );
                             } else {
                                 if (this.elementCreator) {
-                                    const element = this.elementCreator.getCreatedElement() as HTMLElement;
-                                    element.style.animation = 'shake .1s 3';
-                                    setTimeout(() => {
-                                        element.style.animation = '';
-                                    }, 3000);
+                                    shakeElement(this.elementCreator);
                                 }
                             }
                         } else {
                             if (this.elementCreator) {
-                                const element = this.elementCreator.getCreatedElement() as HTMLElement;
-                                element.style.animation = 'shake .1s 3';
-                                setTimeout(() => {
-                                    element.style.animation = '';
-                                }, 3000);
+                                shakeElement(this.elementCreator);
                             }
                         }
                     } catch {
                         if (this.elementCreator) {
-                            const element = this.elementCreator.getCreatedElement() as HTMLElement;
-                            element.style.animation = 'shake .1s 3';
-                            setTimeout(() => {
-                                element.style.animation = '';
-                            }, 3000);
+                            shakeElement(this.elementCreator);
                         }
                     }
                 },
             },
         };
-        const enterBtn = new ElementCreator(paramsEnterBtn);
-        enterBtnContainer.addInnerElement(enterBtn);
+        const enterBtn = new ElementCreator(parametersEnterBtn);
+        enterButtonContainer.addInnerElement(enterBtn);
     }
     keyupHandler(event: Event | undefined): void {
         if (event?.target instanceof HTMLInputElement) {

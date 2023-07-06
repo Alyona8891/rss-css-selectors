@@ -1,5 +1,5 @@
 import './inputElement.css';
-import { ParamsElementCreator } from '../../types/types';
+import { ParametersElementCreator } from '../../types/types';
 import ElementCreator from './elementCreator';
 import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/kimbie-dark.css';
@@ -11,7 +11,7 @@ export default class InputElementCreator extends ElementCreator {
     pseudoInputElement: HTMLDivElement | undefined;
     prePseudoInputElement: HTMLPreElement | undefined;
     codePseudoInputElement: HTMLElement | undefined;
-    createElement(params: ParamsElementCreator): void {
+    createElement(parameters: ParametersElementCreator): void {
         this.element = document.createElement('div');
         this.element.classList.add('input-container');
         this.inputElement = document.createElement('input');
@@ -27,8 +27,8 @@ export default class InputElementCreator extends ElementCreator {
         hljs.highlightElement(this.pseudoInputElement);
         this.codePseudoInputElement.append(this.pseudoInputElement);
         this.element.append(this.prePseudoInputElement);
-        if (params.callback) {
-            this.setCallBack(params.callback);
+        if (parameters.callback) {
+            this.setCallBack(parameters.callback);
         }
     }
 

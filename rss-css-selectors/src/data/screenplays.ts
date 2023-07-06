@@ -1,8 +1,10 @@
-const screenplays = {
+import { Screenplay } from '../types/types';
+
+const screenplays: Screenplay = {
     level1: {
         title: 'Select the bento boxes',
         help: 'bento',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'bento',
                 class: ['strobe'],
@@ -16,20 +18,20 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -38,7 +40,7 @@ const screenplays = {
     level2: {
         title: 'Select the plate',
         help: 'plate',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'bento',
                 class: ['normal'],
@@ -58,25 +60,25 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -85,7 +87,7 @@ const screenplays = {
     level3: {
         title: 'Select the yellow bento boxes',
         help: '.yellow',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'bento',
                 class: ['normal'],
@@ -105,25 +107,25 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'bento',
                         selector: 'class="yellow"',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -132,7 +134,7 @@ const screenplays = {
     level4: {
         title: 'Select the plate on the yellow bento box',
         help: '.yellow plate',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'bento',
                 class: ['normal'],
@@ -166,37 +168,37 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'plate',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'bento',
                         selector: 'class="yellow"',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'plate',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -205,7 +207,7 @@ const screenplays = {
     level5: {
         title: 'Select the wormy apple',
         help: '#wormy',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'plate',
                 class: ['normal'],
@@ -239,35 +241,35 @@ const screenplays = {
                 ],
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'apple',
                         selector: 'id="wormy"',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
@@ -278,7 +280,7 @@ const screenplays = {
     level6: {
         title: 'Select the apple on the right side of the table',
         help: '.table :last-child > apple',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'plate',
                 class: ['normal'],
@@ -312,35 +314,35 @@ const screenplays = {
                 ],
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'apple',
                         selector: 'id="wormy"',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
@@ -351,7 +353,7 @@ const screenplays = {
     level7: {
         title: 'Select the worm on the apple',
         help: 'plate apple worm',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'plate',
                 class: ['normal'],
@@ -385,23 +387,23 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: [
+                                innerElement: [
                                     {
                                         tag: 'worm',
                                         selector: '',
-                                        inner: '',
+                                        innerElement: '',
                                     },
                                 ],
                             },
@@ -410,12 +412,12 @@ const screenplays = {
                     {
                         tag: 'worm',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -424,7 +426,7 @@ const screenplays = {
     level8: {
         title: 'Select the worm on the table',
         help: '.table>worm',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'plate',
                 class: ['normal'],
@@ -458,23 +460,23 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'apple',
                                 selector: '',
-                                inner: [
+                                innerElement: [
                                     {
                                         tag: 'worm',
                                         selector: '',
-                                        inner: '',
+                                        innerElement: '',
                                     },
                                 ],
                             },
@@ -483,12 +485,12 @@ const screenplays = {
                     {
                         tag: 'worm',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                     {
                         tag: 'bento',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -497,7 +499,7 @@ const screenplays = {
     level9: {
         title: 'Select the central worm',
         help: '.table:nth-child(1)>worm',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'apple',
                 class: ['normal'],
@@ -531,37 +533,37 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'apple',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'worm',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'apple',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'worm',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },
@@ -570,7 +572,7 @@ const screenplays = {
     level10: {
         title: 'Clean the table',
         help: '*',
-        paramsBlockPlates: [
+        parametersElements: [
             {
                 tag: 'apple',
                 class: ['strobe'],
@@ -604,37 +606,37 @@ const screenplays = {
                 child: null,
             },
         ],
-        paramsBlockHtml: [
+        parametersHtmlLines: [
             {
                 tag: 'div',
                 selector: 'class="table"',
-                inner: [
+                innerElement: [
                     {
                         tag: 'apple',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'worm',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'apple',
                         selector: '',
-                        inner: [
+                        innerElement: [
                             {
                                 tag: 'worm',
                                 selector: '',
-                                inner: '',
+                                innerElement: '',
                             },
                         ],
                     },
                     {
                         tag: 'plate',
                         selector: '',
-                        inner: '',
+                        innerElement: '',
                     },
                 ],
             },

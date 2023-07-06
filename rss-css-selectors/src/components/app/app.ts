@@ -1,7 +1,6 @@
-import arrPlates from '../../data/arrPlates';
-import state from '../../data/state';
+import initialState from '../../data/state';
 import { State } from '../../types/types';
-import addEventListHtmlLines from '../functions/addEventListHtmlLines';
+import createHandlerHtmlLines from '../functions/createHandlerHtmlLines';
 import FooterView from '../view/footer/footerView';
 import HeaderView from '../view/header/headerView';
 import MainView from '../view/main/mainView';
@@ -13,16 +12,16 @@ interface CustomElement extends HTMLElement {
 export default class App {
     state: State;
     constructor() {
-        this.state = state;
+        this.state = initialState;
         this.checkState();
         this.createView();
-        addEventListHtmlLines();
+        createHandlerHtmlLines();
     }
 
     createView(): void {
         const headerView = new HeaderView() as unknown as CustomElement;
         const footerView = new FooterView() as unknown as CustomElement;
-        const mainView = new MainView(state) as unknown as CustomElement;
+        const mainView = new MainView(this.state) as unknown as CustomElement;
         document.body.append(
             headerView.getElementCreator(),
             mainView.getElementCreator(),
@@ -31,9 +30,9 @@ export default class App {
     }
 
     checkState(): void {
-        const localAlyonaState = localStorage.getItem('alyonaState');
-        if (localAlyonaState) {
-            this.state = JSON.parse(localAlyonaState);
+        const localStorageAlyonaState = localStorage.getItem('alyonaState');
+        if (localStorageAlyonaState) {
+            this.state = JSON.parse(localStorageAlyonaState);
         } else {
             localStorage.setItem('alyonaState', JSON.stringify(this.state));
         }

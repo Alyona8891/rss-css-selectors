@@ -1,5 +1,5 @@
 import './footer.css';
-import { ParamsElementCreator } from '../../../types/types';
+import { ParametersElementCreator } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import LinkView from './link/linkView';
@@ -7,8 +7,8 @@ import ImageView from './image/imageView';
 interface CustomElement extends HTMLElement {
     getElementCreator(): Element;
 }
-const attrributesNames = [
-    [
+const ATTRIBUTES = {
+    githablink: [
         {
             name: 'href',
             value: 'https://github.com/Alyona8891',
@@ -18,7 +18,7 @@ const attrributesNames = [
             value: '_blank',
         },
     ],
-    [
+    rsschoollink: [
         {
             name: 'href',
             value: 'https://rs.school/js/',
@@ -28,7 +28,7 @@ const attrributesNames = [
             value: '_blank',
         },
     ],
-    [
+    logoimage: [
         {
             name: 'src',
             value: 'https://rs.school/images/rs_school_js.svg',
@@ -38,59 +38,59 @@ const attrributesNames = [
             value: 'rs logo',
         },
     ],
-];
+};
 
 export default class FooterView extends View {
     constructor() {
-        const params: ParamsElementCreator = {
+        const parameters: ParametersElementCreator = {
             tag: 'footer',
             tagClases: ['footer'],
             textContent: '',
             callback: null,
         };
-        super(params);
+        super(parameters);
         this.configView();
     }
 
     configView(): void {
-        const paramsGh: ParamsElementCreator = {
+        const parametersGithubLinkBlock: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['gh-profile'],
             textContent: '',
             callback: null,
         };
-        const ghPrLinkCreator = new ElementCreator(paramsGh);
+        const githubLinkBlockElement = new ElementCreator(parametersGithubLinkBlock);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(ghPrLinkCreator);
+            this.elementCreator.addInnerElement(githubLinkBlockElement);
         }
-        const ghPrLinkElen = new LinkView('Alyona Shupenyova', attrributesNames[0]);
-        ghPrLinkCreator.addInnerElement(ghPrLinkElen.getElementCreator());
-        const paramsYear: ParamsElementCreator = {
+        const githubLinkElement = new LinkView('Alyona Shupenyova', ATTRIBUTES.githablink);
+        githubLinkBlockElement.addInnerElement(githubLinkElement.getElementCreator());
+        const parametersYearBlockElement: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['year'],
             textContent: '2023',
             callback: null,
         };
-        const yearCreator = new ElementCreator(paramsYear);
+        const yearBlockElement = new ElementCreator(parametersYearBlockElement);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(yearCreator);
+            this.elementCreator.addInnerElement(yearBlockElement);
         }
-        const paramsRsLint: ParamsElementCreator = {
+        const parametersRsschoolLinkBlock: ParametersElementCreator = {
             tag: 'div',
             tagClases: ['rs-link'],
             textContent: '',
             callback: null,
         };
-        const rsLinkCreator = new ElementCreator(paramsRsLint);
+        const rsschoolLinkBlockElement = new ElementCreator(parametersRsschoolLinkBlock);
         if (this.elementCreator) {
-            this.elementCreator.addInnerElement(rsLinkCreator);
+            this.elementCreator.addInnerElement(rsschoolLinkBlockElement);
         }
-        const rsLinkElenm = new LinkView('', attrributesNames[1]);
-        rsLinkCreator.addInnerElement(rsLinkElenm.getElementCreator());
-        const logoImage = new ImageView(attrributesNames[2]) as unknown as CustomElement;
-        const j = logoImage.getElementCreator();
-        if (j) {
-            rsLinkElenm.getElementCreator()?.append(logoImage.getElementCreator());
+        const rsschoolLinkElement = new LinkView('', ATTRIBUTES.rsschoollink);
+        rsschoolLinkBlockElement.addInnerElement(rsschoolLinkElement.getElementCreator());
+        const logoImageElement = new ImageView(ATTRIBUTES.logoimage) as unknown as CustomElement;
+        const createdLogoImageElement = logoImageElement.getElementCreator();
+        if (createdLogoImageElement) {
+            rsschoolLinkElement.getElementCreator()?.append(logoImageElement.getElementCreator());
         }
     }
 }
