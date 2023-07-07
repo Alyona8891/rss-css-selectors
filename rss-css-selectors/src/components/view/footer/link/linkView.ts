@@ -6,7 +6,7 @@ export default class LinkView extends View {
     constructor(text: string, attributes: Record<string, string>[]) {
         const parameters: ParametersElementCreator = {
             tag: 'a',
-            tagClases: ['link'],
+            tagClasses: ['link'],
             textContent: text,
             callback: null,
         };

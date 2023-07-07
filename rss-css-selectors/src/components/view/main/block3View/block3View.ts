@@ -15,7 +15,7 @@ export default class Block3View extends View {
     constructor(parametersHtmlLines: ParametersHtmlLines[]) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['block3'],
+            tagClasses: ['block3'],
             textContent: '',
             callback: null,
         };
@@ -28,7 +28,7 @@ export default class Block3View extends View {
     configView(parametersHtmlLines: ParametersHtmlLines[]): void {
         const parametersEditorHeaderContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['editor-header_container'],
+            tagClasses: ['editor-header_container'],
             textContent: '',
             callback: null,
         };
@@ -38,7 +38,7 @@ export default class Block3View extends View {
         }
         const parametersFileNameContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['file-name'],
+            tagClasses: ['file-name'],
             textContent: 'HTML Viewer',
             callback: null,
         };
@@ -46,7 +46,7 @@ export default class Block3View extends View {
         editorHeaderContainerElement.addInnerElement(editorHeaderFileName);
         const parametersFileElement: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['file-window'],
+            tagClasses: ['file-window'],
             textContent: 'table.html',
             callback: null,
         };
@@ -54,7 +54,7 @@ export default class Block3View extends View {
         editorHeaderContainerElement.addInnerElement(editorHeaderFileElement);
         const parametersLineNumbersElement: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['line-numbers-html'],
+            tagClasses: ['line-numbers-html'],
             textContent: '',
             callback: null,
         };

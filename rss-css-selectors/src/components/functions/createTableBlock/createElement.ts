@@ -9,7 +9,7 @@ export function createElement(
 ): HTMLElement {
     const parametersCreatingElement = {
         tag: el.tag,
-        tagClases: el.class,
+        tagClasses: el.class,
         textContent: '',
         callback: {
             mouseover: handleElementMouseover,

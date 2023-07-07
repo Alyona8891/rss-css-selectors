@@ -21,7 +21,7 @@ export default class MainView extends View {
     constructor(state: State) {
         const parameters: ParametersElementCreator = {
             tag: 'main',
-            tagClases: ['main'],
+            tagClasses: ['main'],
             textContent: '',
             callback: null,
         };
@@ -35,7 +35,7 @@ export default class MainView extends View {
     configView(screenplays: Screenplay): void {
         const parametersTitle: ParametersElementCreator = {
             tag: 'h1',
-            tagClases: ['title'],
+            tagClasses: ['title'],
             textContent: screenplays[`level${localStorage.alyonaCurrentLevel}`].title,
             callback: null,
         };
@@ -45,7 +45,7 @@ export default class MainView extends View {
         }
         const parametersButtonHelpContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['container'],
+            tagClasses: ['container'],
             textContent: '',
             callback: null,
         };
@@ -55,7 +55,7 @@ export default class MainView extends View {
         }
         const parametersButtonHelp: ParametersElementCreator = {
             tag: 'button',
-            tagClases: ['buttonHelp'],
+            tagClasses: ['buttonHelp'],
             textContent: ButtonHelpTextContent,
             callback: {
                 click: handlerButtonHelp,

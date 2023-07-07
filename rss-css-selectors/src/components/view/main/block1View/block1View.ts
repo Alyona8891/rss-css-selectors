@@ -10,7 +10,7 @@ export default class Block1View extends View {
     constructor(parametersBlockPlates: ParamsBlockPlate[]) {
         const params: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['block1'],
+            tagClasses: ['block1'],
             textContent: '',
             callback: null,
         };
@@ -23,7 +23,7 @@ export default class Block1View extends View {
     configView(paramsBlockPlates: ParamsBlockPlate[]): void {
         const paramsTableSurf: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['table-surf'],
+            tagClasses: ['table-surf'],
             textContent: '',
             callback: null,
         };
@@ -33,7 +33,7 @@ export default class Block1View extends View {
         }
         const paramsTableEdge: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['table-edge'],
+            tagClasses: ['table-edge'],
             textContent: '',
             callback: null,
         };

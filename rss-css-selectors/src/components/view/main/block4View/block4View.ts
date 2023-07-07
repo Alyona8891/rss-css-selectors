@@ -12,7 +12,7 @@ export default class Block4View extends View {
     constructor(state: State) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['block4'],
+            tagClasses: ['block4'],
             textContent: 'Level',
             callback: null,
         };
@@ -27,7 +27,7 @@ export default class Block4View extends View {
         Object.entries(state).forEach(([key, value]) => {
             const parametersLevelContainer: ParametersElementCreator = {
                 tag: 'div',
-                tagClases: ['level-container'],
+                tagClasses: ['level-container'],
                 textContent: '',
                 callback: {
                     click: (event: Event): void => {
@@ -77,7 +77,7 @@ export default class Block4View extends View {
             }
             const parametersCheckMarkElement: ParametersElementCreator = {
                 tag: 'span',
-                tagClases: ['check-mark'],
+                tagClasses: ['check-mark'],
                 textContent: '',
                 callback: null,
             };
@@ -88,7 +88,7 @@ export default class Block4View extends View {
             }
             const parametersLevelNumberElement: ParametersElementCreator = {
                 tag: 'span',
-                tagClases: ['level-num'],
+                tagClasses: ['level-num'],
                 textContent: `${key}`,
                 callback: null,
             };
@@ -96,7 +96,7 @@ export default class Block4View extends View {
             levelContainerElement.addInnerElement(levelNumberElement);
             const parametersStateLevelElement: ParametersElementCreator = {
                 tag: 'span',
-                tagClases: ['state-with-help'],
+                tagClasses: ['state-with-help'],
                 textContent: '(with help)',
                 callback: null,
             };
@@ -108,7 +108,7 @@ export default class Block4View extends View {
         });
         const parametersButtonResetElement: ParametersElementCreator = {
             tag: 'button',
-            tagClases: ['reset-btn'],
+            tagClasses: ['reset-btn'],
             textContent: 'Reset Progress',
             callback: {
                 click: (): void => {

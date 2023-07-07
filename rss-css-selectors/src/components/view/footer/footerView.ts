@@ -41,21 +41,23 @@ const ATTRIBUTES = {
 };
 
 export default class FooterView extends View {
+    parameters: ParametersElementCreator;
     constructor() {
         const parameters: ParametersElementCreator = {
             tag: 'footer',
-            tagClases: ['footer'],
+            tagClasses: ['footer'],
             textContent: '',
             callback: null,
         };
         super(parameters);
+        this.parameters = parameters;
         this.configView();
     }
 
     configView(): void {
         const parametersGithubLinkBlock: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['gh-profile'],
+            tagClasses: ['gh-profile'],
             textContent: '',
             callback: null,
         };
@@ -67,7 +69,7 @@ export default class FooterView extends View {
         githubLinkBlockElement.addInnerElement(githubLinkElement.getElementCreator());
         const parametersYearBlockElement: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['year'],
+            tagClasses: ['year'],
             textContent: '2023',
             callback: null,
         };
@@ -77,7 +79,7 @@ export default class FooterView extends View {
         }
         const parametersRsschoolLinkBlock: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['rs-link'],
+            tagClasses: ['rs-link'],
             textContent: '',
             callback: null,
         };

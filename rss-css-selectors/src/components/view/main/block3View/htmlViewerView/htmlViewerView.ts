@@ -12,7 +12,7 @@ export default class HTMLViewerView extends View {
     constructor(parametersBlockHtml: ParametersHtmlLines[]) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['table-html'],
+            tagClasses: ['table-html'],
             textContent: '',
             callback: null,
         };

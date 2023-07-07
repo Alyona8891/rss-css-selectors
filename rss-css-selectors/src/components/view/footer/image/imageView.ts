@@ -6,7 +6,7 @@ export default class ImageView extends View {
     constructor(attributes: Record<string, string>[]) {
         const parameters: ParametersElementCreator = {
             tag: 'img',
-            tagClases: ['logo'],
+            tagClasses: ['logo'],
             textContent: '',
             callback: null,
         };

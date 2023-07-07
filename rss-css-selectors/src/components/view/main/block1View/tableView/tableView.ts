@@ -12,7 +12,7 @@ export default class TableView extends View {
     constructor(paramsGameBlock: ParamsBlockPlate[]) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['table'],
+            tagClasses: ['table'],
             textContent: '',
             callback: null,
         };
@@ -25,7 +25,7 @@ export default class TableView extends View {
     configView(paramsGameBlock: ParamsBlockPlate[]): void {
         const parametersHelperElement = {
             tag: 'div',
-            tagClases: ['helper'],
+            tagClasses: ['helper'],
             textContent: '',
             callback: null,
         };

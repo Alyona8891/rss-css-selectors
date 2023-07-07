@@ -1,6 +1,6 @@
 export interface ParametersElementCreator {
     tag: string;
-    tagClases: string[] | null;
+    tagClasses: string[] | null;
     textContent: string;
     callback: CallbackObject | FunctionObject | null;
 }

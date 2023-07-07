@@ -18,7 +18,7 @@ export default class Block2View extends View {
     constructor() {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['block2'],
+            tagClasses: ['block2'],
             textContent: '',
             callback: null,
         };
@@ -30,7 +30,7 @@ export default class Block2View extends View {
     configView(): void {
         const parametersEditorHeaderContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['editor-header_container'],
+            tagClasses: ['editor-header_container'],
             textContent: '',
             callback: null,
         };
@@ -40,7 +40,7 @@ export default class Block2View extends View {
         }
         const parametersFileNameContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['file-name'],
+            tagClasses: ['file-name'],
             textContent: 'CSS Editor',
             callback: null,
         };
@@ -48,7 +48,7 @@ export default class Block2View extends View {
         editorHeaderContainerElement.addInnerElement(editorHeaderFileName);
         const parametersFileElement: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['file-window'],
+            tagClasses: ['file-window'],
             textContent: 'style.css',
             callback: null,
         };
@@ -56,7 +56,7 @@ export default class Block2View extends View {
         editorHeaderContainerElement.addInnerElement(editorHeaderFileElement);
         const parametersLineNumbersElement: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['line-numbers'],
+            tagClasses: ['line-numbers'],
             textContent: '',
             callback: null,
         };
@@ -68,7 +68,7 @@ export default class Block2View extends View {
         }
         const paramsInputElement: ParametersElementCreator = {
             tag: 'input',
-            tagClases: [],
+            tagClasses: [],
             textContent: '',
             callback: {
                 keyup: (event) => this.keyupHandler(event),
@@ -88,7 +88,7 @@ export default class Block2View extends View {
 
         const parametersEnterBtnContainer: ParametersElementCreator = {
             tag: 'div',
-            tagClases: ['enterBtn-container'],
+            tagClasses: ['enterBtn-container'],
             textContent: '',
             callback: null,
         };
@@ -98,7 +98,7 @@ export default class Block2View extends View {
         }
         const parametersEnterBtn: ParametersElementCreator = {
             tag: 'button',
-            tagClases: ['enter-button'],
+            tagClasses: ['enter-button'],
             textContent: 'Enter',
             callback: {
                 click: () => {
