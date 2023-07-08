@@ -112,7 +112,7 @@ export default class LevelsBlockView extends View {
             textContent: 'Reset Progress',
             callback: {
                 click: (): void => {
-                    const currentStateArr = Object.entries(this.currentState).map(([key, value], i) => {
+                    const currentStateArr: StateArray = Object.entries(this.currentState).map(([key, value], i) => {
                         value.isCurrentLevel = false;
                         value.isFinished = false;
                         value.isFinishedWithHelp = false;
