@@ -8,7 +8,7 @@ import Block3View from './block3View/block3View';
 import Block4View from './block4View/block4View';
 import screenplays from '../../../data/screenplays';
 import handlerButtonHelp from './handlerButtonHelp';
-import detectCurrentLevel from '../../functions/detectCurrentValue';
+import detectCurrentLevel from '../../functions/detectCurrentLevel';
 
 interface CustomElement extends HTMLElement {
     getElementCreator(): HTMLElement;

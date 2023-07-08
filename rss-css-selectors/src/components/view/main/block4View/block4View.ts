@@ -2,7 +2,7 @@ import './block4.css';
 import { StateArray, ParametersElementCreator, State } from '../../../../types/types';
 import View from '../../view';
 import ElementCreator from '../../../unit/elementCreator';
-import detectCurrentLevel from '../../../functions/detectCurrentValue';
+import detectCurrentLevel from '../../../functions/detectCurrentLevel';
 import App from '../../../app/app';
 
 export default class Block4View extends View {
