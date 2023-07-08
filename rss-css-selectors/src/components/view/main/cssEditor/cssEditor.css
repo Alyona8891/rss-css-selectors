@@ -1,11 +1,11 @@
-.block2{
+.cssEditorContainer{
     border: solid 10px rgba(0,0,0,.35);
     display: grid;
     grid-template-columns: 0.1fr 0.7fr 0.2fr;
     grid-template-rows: 0.1fr 0.9fr;
 }
 @media screen and (max-width: 1020px) {
-    .block2{
+    .cssEditorContainer{
         grid-column: 1 / 2;
         grid-row: 4 / 4;
         grid-template-rows: 0.1fr 27px;

@@ -1,18 +1,18 @@
-import './block4.css';
+import './levelsBlock.css';
 import { StateArray, ParametersElementCreator, State } from '../../../../types/types';
 import View from '../../view';
 import ElementCreator from '../../../unit/elementCreator';
 import detectCurrentLevel from '../../../functions/detectCurrentLevel';
 import App from '../../../app/app';
 
-export default class Block4View extends View {
+export default class LevelsBlockView extends View {
     firstState: State;
     currentState: State;
     arrElements: HTMLElement[];
     constructor(state: State) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClasses: ['block4'],
+            tagClasses: ['levelsBlockContainer'],
             textContent: 'Level',
             callback: null,
         };
@@ -60,7 +60,7 @@ export default class Block4View extends View {
                         while (bodyElement?.firstElementChild) {
                             bodyElement.firstElementChild.remove();
                         }
-                        const app = new App();
+                        new App();
                     },
                 },
             };
@@ -128,7 +128,7 @@ export default class Block4View extends View {
                     while (bodyElement?.firstElementChild) {
                         bodyElement.firstElementChild.remove();
                     }
-                    const app = new App();
+                    new App();
                 },
             },
         };

@@ -15,12 +15,15 @@ export interface ParamsBlockPlate {
 export type CallbackObject = {
     [key: string]: (event: Event | KeyboardEvent) => void;
 };
+
 type FunctionType = {
     [key: string]: (event: Event | KeyboardEvent) => void;
 };
+
 export type FunctionObject = {
     [key: string]: FunctionType;
 };
+
 type Obj = {
     tag: string;
     selector?: string;
@@ -40,22 +43,19 @@ export interface Screenplay {
         parametersHtmlLines: Obj[];
     };
 }
+
 export interface ParametersHtmlLines {
     tag: string;
     selector?: string;
     innerElement: Obj[] | string;
 }
+
+type StateUnit = {
+    [key: string]: boolean;
+};
+
 export interface State {
-    1: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    2: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    3: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    4: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    5: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    6: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    7: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    8: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    9: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
-    10: { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean };
+    [key: string]: StateUnit;
 }
 
 export type StateArray = Array<[string, { isFinished: boolean; isFinishedWithHelp: boolean; isCurrentLevel: boolean }]>;

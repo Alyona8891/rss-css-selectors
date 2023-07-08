@@ -1,6 +1,5 @@
 import hljs from 'highlight.js/lib/core';
 import initialState from '../../../data/state';
-import { StateArray } from '../../../types/types';
 import App from '../../app/app';
 import screenplays from '../../../data/screenplays';
 
@@ -24,17 +23,7 @@ function handlerButtonHelp(): void {
         if (parsedLocalStageAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`]) {
             parsedLocalStageAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`].isCurrentLevel = true;
         } else {
-            const parsedLocalStageAlyonaStateArray = Object.entries(
-                parsedLocalStageAlyonaState
-            ) as unknown as StateArray;
-            const element = parsedLocalStageAlyonaStateArray.find(([key, value]) => {
-                value.isFinished === false;
-            });
-            if (element) {
-                parsedLocalStageAlyonaState[`${element[0]}`].isCurrentLevel = true;
-            } else {
-                parsedLocalStageAlyonaState = initialState;
-            }
+            parsedLocalStageAlyonaState = initialState;
         }
         localStorage.setItem('alyonaState', JSON.stringify(parsedLocalStageAlyonaState));
         pseudoInputElement.addEventListener('animationend', () => {
@@ -50,7 +39,7 @@ function handlerButtonHelp(): void {
                     while (bodyElement?.firstElementChild) {
                         bodyElement.firstElementChild.remove();
                     }
-                    const app = new App();
+                    new App();
                 })
             );
         });

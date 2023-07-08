@@ -1,4 +1,4 @@
-import './block3.css';
+import './htmlBlock.css';
 import { ParametersHtmlLines, ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
@@ -9,13 +9,13 @@ interface CustomElement extends HTMLElement {
     addInnerElement(element: Element | ElementCreator | undefined): Element;
 }
 
-export default class Block3View extends View {
+export default class HtmlBlockView extends View {
     valueInput: string;
     parametersHtmlLines: ParametersHtmlLines[];
     constructor(parametersHtmlLines: ParametersHtmlLines[]) {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClasses: ['block3'],
+            tagClasses: ['htmlBlockContainer'],
             textContent: '',
             callback: null,
         };

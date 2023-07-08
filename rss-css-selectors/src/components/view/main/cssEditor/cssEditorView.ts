@@ -1,5 +1,5 @@
-import './block2.css';
-import { StateArray, ParametersElementCreator } from '../../../../types/types';
+import './cssEditor.css';
+import { ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import InputElementCreator from '../../../unit/inputElementCreator';
@@ -12,13 +12,13 @@ import initialState from '../../../../data/state';
 import shakeElement from './shakeElement';
 hljs.registerLanguage('css', css);
 
-export default class Block2View extends View {
+export default class CssEditorView extends View {
     valueInput: string;
     value: string | undefined;
     constructor() {
         const parameters: ParametersElementCreator = {
             tag: 'div',
-            tagClasses: ['block2'],
+            tagClasses: ['cssEditorContainer'],
             textContent: '',
             callback: null,
         };
@@ -106,32 +106,19 @@ export default class Block2View extends View {
                         if (this.valueInput.length > 0) {
                             const arrUser = Array.from(document.querySelectorAll(`${this.valueInput}`));
                             const arrTrue = Array.from(document.querySelectorAll('.strobe'));
-                            if (compareArrays(arrUser, arrTrue)) {
-                                const localAlyonaState = localStorage.getItem('alyonaState');
-                                if (localAlyonaState) {
-                                    let parsedLocalAlyonaState = JSON.parse(localAlyonaState);
-                                    parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isFinished = true;
-                                    parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isCurrentLevel = false;
-                                    if (parsedLocalAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`]) {
-                                        parsedLocalAlyonaState[
-                                            `${+localStorage.alyonaCurrentLevel + 1}`
-                                        ].isCurrentLevel = true;
-                                    } else {
-                                        const parsedLocalAlyonaStateArr = Object.entries(
-                                            parsedLocalAlyonaState
-                                        ) as unknown as StateArray;
-                                        const element = parsedLocalAlyonaStateArr.find(([key, value]) => {
-                                            value.isFinished === false;
-                                        });
-                                        if (element) {
-                                            parsedLocalAlyonaState[`${element[0]}`].isCurrentLevel = true;
-                                        } else {
-                                            parsedLocalAlyonaState = initialState;
-                                        }
-                                    }
-
-                                    localStorage.setItem('alyonaState', JSON.stringify(parsedLocalAlyonaState));
+                            const localAlyonaState = localStorage.getItem('alyonaState');
+                            if (compareArrays(arrUser, arrTrue) && localAlyonaState) {
+                                let parsedLocalAlyonaState = JSON.parse(localAlyonaState);
+                                parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isFinished = true;
+                                parsedLocalAlyonaState[`${localStorage.alyonaCurrentLevel}`].isCurrentLevel = false;
+                                if (parsedLocalAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`]) {
+                                    parsedLocalAlyonaState[`${+localStorage.alyonaCurrentLevel + 1}`].isCurrentLevel =
+                                        true;
+                                } else {
+                                    parsedLocalAlyonaState = initialState;
                                 }
+
+                                localStorage.setItem('alyonaState', JSON.stringify(parsedLocalAlyonaState));
                                 const elementClassHelper = document.querySelector('.helper') as HTMLElement;
                                 elementClassHelper?.classList.add('visib');
                                 elementClassHelper.innerText = 'Level is passed!';
@@ -144,7 +131,7 @@ export default class Block2View extends View {
                                         while (bodyElement?.firstElementChild) {
                                             bodyElement.firstElementChild.remove();
                                         }
-                                        const app = new App();
+                                        new App();
                                     })
                                 );
                             } else {

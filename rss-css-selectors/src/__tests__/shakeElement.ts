@@ -1,5 +1,5 @@
 import ElementCreator from '../components/unit/elementCreator';
-import shakeElement from '../components/view/main/block2View/shakeElement';
+import shakeElement from '../components/view/main/cssEditor/shakeElement';
 interface CustomElement extends HTMLElement {
     getCreatedElement(): Element | HTMLElement;
     addInnerElement(element: HTMLElement | ElementCreator | undefined): Element;

@@ -1,16 +1,16 @@
-import './Block1View.css';
+import './GameBlockView.css';
 import { ParamsBlockPlate, ParametersElementCreator } from '../../../../types/types';
 import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import TableView from './tableView/tableView';
 
-export default class Block1View extends View {
+export default class GameBlockView extends View {
     arr: HTMLElement[] | Element[] | undefined;
     parametersBlockPlates: ParamsBlockPlate[];
     constructor(parametersBlockPlates: ParamsBlockPlate[]) {
         const params: ParametersElementCreator = {
             tag: 'div',
-            tagClasses: ['block1'],
+            tagClasses: ['gameBlockContainer'],
             textContent: '',
             callback: null,
         };

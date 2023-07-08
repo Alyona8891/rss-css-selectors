@@ -2,10 +2,10 @@ import './main.css';
 import { ParametersElementCreator, Screenplay, State } from '../../../types/types';
 import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
-import Block1View from './block1View/block1View';
-import Block2View from './block2View/block2View';
-import Block3View from './block3View/block3View';
-import Block4View from './block4View/block4View';
+import GameBlockView from './gameBlock/GameBlockView';
+import CssEditorView from './cssEditor/cssEditorView';
+import HtmlBlockView from './htmlBlock/htmlBlockView';
+import LevelsBlockView from './levelsBlock/levelsBlockView';
 import screenplays from '../../../data/screenplays';
 import handlerButtonHelp from './handlerButtonHelp';
 import detectCurrentLevel from '../../functions/detectCurrentLevel';
@@ -65,18 +65,18 @@ export default class MainView extends View {
         if (buttonHelpContainer) {
             buttonHelpContainer.addInnerElement(buttonHelpElement);
         }
-        const block4 = new Block4View(this.state) as unknown as CustomElement;
-        this.elementCreator?.addInnerElement(block4?.getElementCreator());
-        const block1 = new Block1View(
+        const levelsBlockView = new LevelsBlockView(this.state) as unknown as CustomElement;
+        this.elementCreator?.addInnerElement(levelsBlockView?.getElementCreator());
+        const gameBlockView = new GameBlockView(
             screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersElements
         ) as unknown as CustomElement;
-        this.elementCreator?.addInnerElement(block1?.getElementCreator());
-        const block2 = new Block2View() as unknown as CustomElement;
-        this.elementCreator?.addInnerElement(block2?.getElementCreator());
-        const block3 = new Block3View(
+        this.elementCreator?.addInnerElement(gameBlockView?.getElementCreator());
+        const cssEditorView = new CssEditorView() as unknown as CustomElement;
+        this.elementCreator?.addInnerElement(cssEditorView?.getElementCreator());
+        const htmlBlockView = new HtmlBlockView(
             screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersHtmlLines
         ) as unknown as CustomElement;
-        this.elementCreator?.addInnerElement(block3?.getElementCreator());
+        this.elementCreator?.addInnerElement(htmlBlockView?.getElementCreator());
     }
 
     checkState(): void {
