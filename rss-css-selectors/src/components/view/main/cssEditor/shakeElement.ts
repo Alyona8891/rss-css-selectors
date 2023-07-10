@@ -1,11 +1,6 @@
 import ElementCreator from '../../../unit/elementCreator';
 
-interface CustomElement extends HTMLElement {
-    getCreatedElement(): Element | HTMLElement;
-    addInnerElement(element: HTMLElement | ElementCreator | undefined): Element;
-}
-
-function shakeElement(element: CustomElement): void {
+function shakeElement(element: ElementCreator): void {
     const createdElement = element.getCreatedElement() as HTMLElement;
     createdElement.style.animation = 'shake .1s 3';
     setTimeout(() => {

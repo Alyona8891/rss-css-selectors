@@ -4,9 +4,7 @@ import View from '../view';
 import ElementCreator from '../../unit/elementCreator';
 import LinkView from './link/linkView';
 import ImageView from './image/imageView';
-interface CustomElement extends HTMLElement {
-    getElementCreator(): Element;
-}
+
 const ATTRIBUTES = {
     githablink: [
         {
@@ -89,10 +87,10 @@ export default class FooterView extends View {
         }
         const rsschoolLinkElement = new LinkView('', ATTRIBUTES.rsschoollink);
         rsschoolLinkBlockElement.addInnerElement(rsschoolLinkElement.getElementCreator());
-        const logoImageElement = new ImageView(ATTRIBUTES.logoimage) as unknown as CustomElement;
+        const logoImageElement: View = new ImageView(ATTRIBUTES.logoimage);
         const createdLogoImageElement = logoImageElement.getElementCreator();
         if (createdLogoImageElement) {
-            rsschoolLinkElement.getElementCreator()?.append(logoImageElement.getElementCreator());
+            rsschoolLinkElement.getElementCreator()?.append(createdLogoImageElement);
         }
     }
 }

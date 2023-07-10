@@ -4,11 +4,6 @@ import ElementCreator from '../../../unit/elementCreator';
 import View from '../../view';
 import HTMLViewerView from './htmlViewerView/htmlViewerView';
 
-interface CustomElement extends HTMLElement {
-    getElementCreator(): HTMLElement;
-    addInnerElement(element: Element | ElementCreator | undefined): Element;
-}
-
 export default class HtmlBlockView extends View {
     valueInput: string;
     parametersHtmlLines: ParametersHtmlLines[];
@@ -64,7 +59,7 @@ export default class HtmlBlockView extends View {
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(createdLineNumbersElement);
         }
-        const htmlViewer = new HTMLViewerView(parametersHtmlLines) as unknown as CustomElement;
+        const htmlViewer: View = new HTMLViewerView(parametersHtmlLines);
         if (this.elementCreator) {
             this.elementCreator.addInnerElement(htmlViewer.getElementCreator());
         }

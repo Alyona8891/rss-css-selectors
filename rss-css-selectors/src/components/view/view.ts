@@ -1,13 +1,8 @@
 import { ParametersElementCreator } from '../../types/types';
 import ElementCreator from '../unit/elementCreator';
 
-interface CustomElement extends HTMLElement {
-    getCreatedElement(): Element | HTMLElement;
-    addInnerElement(element: HTMLElement | ElementCreator | undefined): Element;
-}
-
 export default class View {
-    elementCreator: CustomElement | null;
+    elementCreator: ElementCreator | null;
 
     constructor(parameters: ParametersElementCreator) {
         this.elementCreator = this.createView(parameters);
@@ -19,8 +14,8 @@ export default class View {
         }
     }
 
-    createView(parameters: ParametersElementCreator): CustomElement | null {
-        const elementCreator = new ElementCreator(parameters) as unknown as CustomElement | null;
+    createView(parameters: ParametersElementCreator): ElementCreator | null {
+        const elementCreator: ElementCreator = new ElementCreator(parameters);
         return elementCreator;
     }
 }

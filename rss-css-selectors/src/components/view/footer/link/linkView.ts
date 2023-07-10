@@ -15,6 +15,6 @@ export default class LinkView extends View {
     }
 
     setAttribute(attrributesNames: Record<string, string>[]): void {
-        attrributesNames.forEach((el) => this.elementCreator?.getCreatedElement().setAttribute(el.name, el.value));
+        attrributesNames.forEach((el) => this.elementCreator?.getCreatedElement()?.setAttribute(el.name, el.value));
     }
 }

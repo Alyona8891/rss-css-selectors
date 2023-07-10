@@ -10,11 +10,6 @@ import screenplays from '../../../data/screenplays';
 import handlerButtonHelp from './handlerButtonHelp';
 import detectCurrentLevel from '../../functions/detectCurrentLevel';
 
-interface CustomElement extends HTMLElement {
-    getElementCreator(): HTMLElement;
-    addInnerElement(element: Element | ElementCreator | undefined): Element;
-}
-
 const ButtonHelpTextContent = 'I can help:)';
 export default class MainView extends View {
     state: State;
@@ -65,17 +60,17 @@ export default class MainView extends View {
         if (buttonHelpContainer) {
             buttonHelpContainer.addInnerElement(buttonHelpElement);
         }
-        const levelsBlockView = new LevelsBlockView(this.state) as unknown as CustomElement;
+        const levelsBlockView: View = new LevelsBlockView(this.state);
         this.elementCreator?.addInnerElement(levelsBlockView?.getElementCreator());
-        const gameBlockView = new GameBlockView(
+        const gameBlockView: View = new GameBlockView(
             screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersElements
-        ) as unknown as CustomElement;
+        );
         this.elementCreator?.addInnerElement(gameBlockView?.getElementCreator());
-        const cssEditorView = new CssEditorView() as unknown as CustomElement;
+        const cssEditorView: View = new CssEditorView();
         this.elementCreator?.addInnerElement(cssEditorView?.getElementCreator());
-        const htmlBlockView = new HtmlBlockView(
+        const htmlBlockView: View = new HtmlBlockView(
             screenplays[`level${localStorage.alyonaCurrentLevel}`].parametersHtmlLines
-        ) as unknown as CustomElement;
+        );
         this.elementCreator?.addInnerElement(htmlBlockView?.getElementCreator());
     }
 

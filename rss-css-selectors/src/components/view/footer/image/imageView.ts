@@ -15,6 +15,6 @@ export default class ImageView extends View {
     }
 
     setAttribute(attributes: Record<string, string>[]): void {
-        attributes.forEach((el) => this.elementCreator?.getCreatedElement().setAttribute(el.name, el.value));
+        attributes.forEach((el) => this.elementCreator?.getCreatedElement()?.setAttribute(el.name, el.value));
     }
 }
