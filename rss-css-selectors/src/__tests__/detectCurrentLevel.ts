@@ -57,10 +57,6 @@ describe('detectCurrentLevel', () => {
         });
 
         expect(localStorage.getItem('alyonaCurrentLevel')).toBe('1');
-    });
-
-    test('should change localStorage.alyonaCurrentLevel', () => {
-        localStorage.setItem('alyonaCurrentLevel', '1');
         detectCurrentLevel({
             1: {
                 isFinished: false,
